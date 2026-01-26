@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Programa Talentos Públicos Recife - Trajetórias</title>
+    <link rel="icon"
+        href="https://statics.recife.pe.gov.br/images/dynamics/conecta/icons/favicon.png?w=32&h=32&fit=fill&border=2,transparent,shrink" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <style>
+        /* Styles from head.txt */
+        :root {
+            --brand-primary: #0053a4;
+            --brand-secondary: #003a73;
+            --brand-highlight: #00a3ff;
+            --surface: #ffedd4;
+            --surface-strong: #ffffff;
+            --border-color: #d0d7e2;
+            --text-strong: #1b263b;
+            --text-muted: #5b6c8c;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Public Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--text-strong);
+            min-height: 100vh;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Sidebar Styles (Custom) */
+        .sidebar {
+            width: 280px;
+            background-color: var(--brand-secondary);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            min-height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.8rem 1.5rem;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--brand-highlight);
+        }
+
+        .nav-link i {
+            font-size: 1.2rem;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 2rem;
+            flex-grow: 1;
+            transition: all 0.3s;
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Form Styles adapted from head.txt */
+        .form-wrapper {
+            background: var(--surface-strong);
+            border-radius: 1rem;
+            padding: clamp(1.5rem, 2vw + 1rem, 3rem);
+            box-shadow: 0 12px 30px rgba(24, 64, 120, 0.08);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--brand-secondary);
+        }
+
+        .form-text,
+        .help-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .required::after {
+            content: " *";
+            color: #d32f2f;
+            margin-left: 0.25rem;
+        }
+
+        .btn-primary {
+            background-color: var(--brand-primary);
+            border-color: var(--brand-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--brand-secondary);
+            border-color: var(--brand-secondary);
+        }
+
+        .status-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border-left: 5px solid var(--brand-highlight);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .file-input-wrapper {
+            border: 1px dashed var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            background: rgba(0, 83, 164, 0.03);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 991px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Mobile Toggle -->
+    <button class="btn btn-primary d-lg-none position-fixed top-0 start-0 m-3 z-3"
+        onclick="document.querySelector('.sidebar').classList.toggle('show')">
+        <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h5 class="m-0 fw-bold">Talentos Públicos</h5>
+            <small class="opacity-75">Recife - Trajetórias</small>
+        </div>
+        <div class="d-flex flex-column py-3">
+            <a href="#" class="nav-link active" onclick="showSection('inscricao')">
+                <i class="bi bi-pencil-square"></i> Inscrição
+            </a>
+            <a href="#" class="nav-link" onclick="showSection('recursos')">
+                <i class="bi bi-arrow-repeat"></i> Recursos
+            </a>
+            <a href="#" class="nav-link" onclick="showSection('documentos')">
+                <i class="bi bi-folder-plus"></i> Docs. Complementares
+            </a>
+            <a href="#" class="nav-link" onclick="showSection('publicacoes')">
+                <i class="bi bi-journal-text"></i> Publicações
+            </a>
+            <a href="#" class="nav-link" onclick="showSection('acompanhamento')">
+                <i class="bi bi-clipboard-data"></i> Acompanhamento
+            </a>
+        </div>
+        <div class="mt-auto p-3 border-top border-secondary bg-dark bg-opacity-25">
+            <div class="d-flex align-items-center gap-3">
+                <div class="bg-white rounded-circle d-flex align-items-center justify-content-center text-primary fw-bold shadow-sm"
+                    style="width: 40px; height: 40px;">JS</div>
+                <div class="small text-white">
+                    <div class="fw-bold">João da Silva</div>
+                    <div class="opacity-75">Matrícula: 123456</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Inscrição Section -->
+        <div id="inscricao" class="content-section active">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="h3 fw-bold text-primary mb-1">Formulário de Inscrição</h2>
+                    <p class="text-muted mb-0">Preencha seus dados para participar do processo seletivo.</p>
+                </div>
+                <span class="badge bg-warning text-dark px-3 py-2 rounded-pill">Em Preenchimento</span>
+            </div>
+
+            <form id="formInscricao" class="needs-validation" novalidate>
+
+                <!-- Dados do Servidor (Readonly) -->
+                <div class="form-wrapper">
+                    <h4 class="mb-4 text-secondary border-bottom pb-2">1. Dados do Servidor</h4>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Nome Completo</label>
+                            <input type="text" class="form-control bg-light" value="JOÃO DA SILVA" readonly
+                                id="nomeCompleto">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">CPF</label>
+                            <input type="text" class="form-control bg-light" value="123.456.789-00" readonly id="cpf">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Data de Nascimento</label>
+                            <input type="date" class="form-control bg-light" value="1985-05-15" readonly
+                                id="dataNascimento">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Matrícula</label>
+                            <input type="text" class="form-control bg-light" value="123456" readonly id="matricula">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Cargo</label>
+                            <input type="text" class="form-control bg-light" value="ANALISTA DE SISTEMAS" readonly
+                                id="cargo">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Vínculo</label>
+                            <input type="text" class="form-control bg-light" value="Efetivo" readonly id="vinculo">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Data de Admissão</label>
+                            <input type="date" class="form-control bg-light" value="2010-02-01" readonly
+                                id="dataAdmissao">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dados Complementares -->
+                <div class="form-wrapper">
+                    <h4 class="mb-4 text-secondary border-bottom pb-2">2. Dados Complementares</h4>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label required">Nacionalidade</label>
+                            <input type="text" class="form-control" required id="nacionalidade">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required">Lotação (Órgão/Secretaria)</label>
+                            <input type="text" class="form-control" required id="lotacao">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required">Pessoa com Deficiência (PcD)</label>
+                            <select class="form-select" required id="pcd">
+                                <option value="">Selecione...</option>
+                                <option value="sim">Sim</option>
+                                <option value="nao">Não</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required">Gênero</label>
+                            <select class="form-select" required id="genero">
+                                <option value="">Selecione...</option>
+                                <option value="feminino">Feminino</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required">Raça/Cor</label>
+                            <select class="form-select" required id="racaCor">
+                                <option value="">Selecione...</option>
+                                <option value="branca">Branca</option>
+                                <option value="preta">Preta</option>
+                                <option value="parda">Parda</option>
+                                <option value="amarela">Amarela</option>
+                                <option value="indigena">Indígena</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">E-mail</label>
+                            <input type="email" class="form-control" required id="email">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">Telefone</label>
+                            <input type="tel" class="form-control" required id="telefone">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">Faixa de Remuneração</label>
+                            <select class="form-select" required id="faixaRemuneracao">
+                                <option value="">Selecione...</option>
+                                <option value="ate_8999">Até R$8.999,99</option>
+                                <option value="9000_12999">De R$9.000,00 a R$12.999,99</option>
+                                <option value="13000_14999">De R$13.000,00 a R$14.999,99</option>
+                                <option value="acima_14999">Acima de R$14.999,99</option>
+                            </select>
+                            <div class="form-text">Verifique item 4.4.2 do Edital.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">Possui mais de um cargo público efetivo?</label>
+                            <select class="form-select" id="outroCargo" onchange="toggleOutroCargo()" required>
+                                <option value="nao">Não</option>
+                                <option value="sim">Sim</option>
+                            </select>
+                            <div class="form-text">Verifique item 8.11 do Edital.</div>
+                        </div>
+                        <div class="col-12 d-none" id="divOutroCargoDetalhes">
+                            <div class="card card-body bg-light border-dashed">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label required">Matrícula (2º Cargo)</label>
+                                        <input type="text" class="form-control" id="matriculaSegundoCargo">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label required">Unidade de Lotação (2º Cargo)</label>
+                                        <input type="text" class="form-control" id="lotacaoSegundoCargo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Requisitos Básicos -->
+                <div class="form-wrapper">
+                    <h4 class="mb-4 text-secondary border-bottom pb-2">3. Requisitos Básicos</h4>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" required id="req1">
+                        <label class="form-check-label" for="req1">Sou servidor público efetivo e estável do Poder
+                            Executivo do Município de Recife</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" required id="req2">
+                        <label class="form-check-label" for="req2">Possuo graduação completa até a data de publicação do
+                            Edital</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" required id="req3">
+                        <label class="form-check-label" for="req3">Possuo vínculo ativo com órgão ou entidade da
+                            administração pública direta ou indireta da Prefeitura da Cidade do Recife</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" required id="req4">
+                        <label class="form-check-label" for="req4">Não estou cedido, requisitado ou em exercício
+                            provisório em outros órgãos</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" required id="req5">
+                        <label class="form-check-label" for="req5">Não possuo requisitos para aposentadoria compulsória
+                            antes do término do período obrigatório de permanência</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" required id="req6">
+                        <label class="form-check-label" for="req6">Iniciei o processo de candidatura ou obtive carta de
+                            aceite em programas de mestrado pleno presencial</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" required id="req7">
+                        <label class="form-check-label" for="req7">Mantenho compromisso de retorno e aplicação do
+                            conhecimento adquirido</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" required id="req8">
+                        <label class="form-check-label" for="req8">Não tenho vínculo de parentesco em até terceiro grau
+                            com membros da comissão ou gestores</label>
+                    </div>
+                </div>
+
+                <!-- Documentação -->
+                <div class="form-wrapper">
+                    <h4 class="mb-4 text-secondary border-bottom pb-2">4. Documentação Comprobatória</h4>
+                    <div class="alert alert-info mb-4">
+                        <i class="bi bi-info-circle-fill me-2"></i> Envie apenas arquivos PDF. O sistema bloqueará a
+                        submissão sem os documentos obrigatórios.
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="file-input-wrapper">
+                                <label class="form-label required">1. Currículo atualizado (Anexo I)</label>
+                                <input type="file" class="form-control" accept=".pdf" required id="fileCurriculo">
+                                <div class="form-text">Formato PDF.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="file-input-wrapper">
+                                <label class="form-label required">2. Comprovante de graduação</label>
+                                <input type="file" class="form-control" accept=".pdf" required id="fileGraduacao">
+                                <div class="form-text">Diploma ou declaração oficial.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="file-input-wrapper">
+                                <label class="form-label required">3. Carta de aceite/admissão</label>
+                                <input type="file" class="form-control" accept=".pdf" multiple required
+                                    id="fileCartaAceite">
+                                <div class="form-text">Ou comprovante de inscrição ("application").</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="file-input-wrapper">
+                                <label class="form-label required">4. Carta de Motivação (Anexo II)</label>
+                                <input type="file" class="form-control" accept=".pdf" multiple required
+                                    id="fileCartaMotivacao">
+                                <div class="form-text">Conforme modelo.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="file-input-wrapper">
+                                <label class="form-label required">5. Plano de Aplicação (Anexo III)</label>
+                                <input type="file" class="form-control" accept=".pdf" multiple required
+                                    id="filePlanoAplicacao">
+                                <div class="form-text">Conforme modelo.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="file-input-wrapper">
+                                <label class="form-label">6. Escolha definitiva da Universidade</label>
+                                <input type="file" class="form-control" accept=".pdf" id="fileEscolhaUniversidade">
+                                <div class="form-text">Opcional nesta etapa.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="file-input-wrapper">
+                                <label class="form-label">7. Carta de aceite (versão definitiva)</label>
+                                <input type="file" class="form-control" accept=".pdf" id="fileCartaAceiteDefinitiva">
+                                <div class="form-text">Opcional nesta etapa.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dados Acadêmicos -->
+                <div class="form-wrapper">
+                    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+                        <h4 class="text-secondary m-0">5. Dados Acadêmicos e de Pesquisa</h4>
+                        <button type="button" class="btn btn-outline-primary btn-sm" id="btnAddUni"
+                            onclick="addUniversity()">
+                            <i class="bi bi-plus-circle"></i> Adicionar Universidade
+                        </button>
+                    </div>
+
+                    <div id="universitiesContainer">
+                        <!-- Dynamic Content -->
+                    </div>
+
+                    <div id="maxUniAlert" class="alert alert-warning mt-3 d-none">
+                        <i class="bi bi-exclamation-triangle"></i> Máximo de 3 universidades permitidas.
+                    </div>
+                </div>
+
+                <!-- Declaração Final -->
+                <div class="form-wrapper">
+                    <div class="p-3 bg-light rounded border">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" required id="declaracaoFinal">
+                            <label class="form-check-label" for="declaracaoFinal" style="text-align: justify;">
+                                Declaro, sob as penas da Lei, que concordo com os termos que constam do Edital n°
+                                01/2026 de Abertura de Inscrições bem como declaro que aceito que os meus dados
+                                pessoais, sensíveis ou não, sejam tratados e processados, de forma a possibilitar a
+                                efetiva execução da seleção para obtenção de afastamento remunerado para realização de
+                                mestrado pleno presencial, com a aplicação dos critérios de avaliação e seleção,
+                                autorizando expressamente a divulgação dos meus nomes, números de inscrição, critérios
+                                de desempate e das minhas notas, em observância aos princípios da publicidade e da
+                                transparência que regem a Administração Pública e nos termos da Lei federal n° 13.709,
+                                de 14 de agosto de 2018; e que não serão fornecidas a terceiros informações e/ou dados
+                                pessoais, sensíveis ou não de candidatos.
+                                <br><br>
+                                Declaro, sob as penas da Lei, que os dados informados neste formulário são verdadeiros e
+                                que conheço e aceito todas as regras pertinentes ao concurso consignadas no Edital n°
+                                01/2026 de Abertura de Inscrições.
+                            </label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end gap-3 mt-4">
+                        <button type="button" class="btn btn-outline-secondary px-4 py-2">Salvar Rascunho</button>
+                        <button type="submit" class="btn btn-primary btn-lg px-5 py-2 shadow">Enviar Inscrição</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- Recursos Section -->
+        <div id="recursos" class="content-section">
+            <h2 class="h3 fw-bold text-primary mb-4">Interposição de Recursos</h2>
+            <div class="form-wrapper text-center py-5">
+                <i class="bi bi-clock-history text-muted" style="font-size: 3rem;"></i>
+                <h4 class="mt-3">Período de Recursos Fechado</h4>
+                <p class="text-muted">O prazo para interposição de recursos administrativos ainda não foi iniciado.</p>
+                <div class="alert alert-warning d-inline-block mt-2">
+                    <i class="bi bi-calendar-event me-2"></i> Consulte o cronograma para mais detalhes.
+                </div>
+            </div>
+        </div>
+
+        <!-- Documentos Complementares Section -->
+        <div id="documentos" class="content-section">
+            <h2 class="h3 fw-bold text-primary mb-4">Documentos Complementares</h2>
+            <div class="form-wrapper">
+                <p class="mb-4">Utilize esta seção para enviar documentos adicionais solicitados pela comissão ou para
+                    formalização da escolha da universidade.</p>
+
+                <div class="card mb-3 border-dashed">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="fw-bold mb-1">Carta de Aceite Definitiva</h6>
+                            <small class="text-muted">Envio obrigatório após aprovação preliminar.</small>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm"><i class="bi bi-upload"></i> Enviar</button>
+                    </div>
+                </div>
+
+                <div class="card mb-3 border-dashed">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="fw-bold mb-1">Outros Documentos</h6>
+                            <small class="text-muted">Documentos solicitados para instrução processual.</small>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm"><i class="bi bi-upload"></i> Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Publicações Section -->
+        <div id="publicacoes" class="content-section">
+            <h2 class="h3 fw-bold text-primary mb-4">Publicações</h2>
+            <div class="form-wrapper p-0 overflow-hidden">
+                <div class="list-group list-group-flush">
+                    <div class="list-group-item p-4 d-flex align-items-center gap-3 hover-bg-light">
+                        <div class="bg-danger text-white rounded p-2 d-flex align-items-center justify-content-center"
+                            style="width: 48px; height: 48px;">
+                            <i class="bi bi-file-earmark-pdf fs-4"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h6 class="fw-bold mb-1">Edital n° 01/2026 - Abertura de Inscrições</h6>
+                            <div class="text-muted small">Publicado em 10/02/2026 • 2.5 MB</div>
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3">Baixar</button>
+                    </div>
+                    <div class="list-group-item p-4 d-flex align-items-center gap-3 hover-bg-light">
+                        <div class="bg-danger text-white rounded p-2 d-flex align-items-center justify-content-center"
+                            style="width: 48px; height: 48px;">
+                            <i class="bi bi-file-earmark-pdf fs-4"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h6 class="fw-bold mb-1">Anexo I - Modelo de Currículo</h6>
+                            <div class="text-muted small">Publicado em 10/02/2026 • 500 KB</div>
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3">Baixar</button>
+                    </div>
+                    <div class="list-group-item p-4 d-flex align-items-center gap-3 hover-bg-light">
+                        <div class="bg-danger text-white rounded p-2 d-flex align-items-center justify-content-center"
+                            style="width: 48px; height: 48px;">
+                            <i class="bi bi-file-earmark-pdf fs-4"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h6 class="fw-bold mb-1">Anexo II - Carta de Motivação</h6>
+                            <div class="text-muted small">Publicado em 10/02/2026 • 450 KB</div>
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3">Baixar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Acompanhamento Section -->
+        <div id="acompanhamento" class="content-section">
+            <h2 class="h3 fw-bold text-primary mb-4">Acompanhamento</h2>
+            <div class="row g-4">
+                <div class="col-md-12">
+                    <div class="status-card">
+                        <h5 class="fw-bold mb-3">Status da Inscrição</h5>
+                        <div class="progress mb-3" style="height: 25px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                style="width: 25%">Inscrição Iniciada</div>
+                        </div>
+                        <p class="mb-0 text-muted">Sua inscrição está em fase de preenchimento. Complete todos os campos
+                            e envie antes do prazo final.</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-wrapper">
+                        <h5 class="fw-bold mb-4">Cronograma do Processo</h5>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Atividade</th>
+                                        <th>Datas</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Lançamento do Edital</td>
+                                        <td>10/02/2026</td>
+                                        <td><span class="badge bg-success rounded-pill">Concluído</span></td>
+                                    </tr>
+                                    <tr class="table-active border-start border-4 border-primary">
+                                        <td class="fw-bold text-primary">Submissão de candidatura</td>
+                                        <td>10/02/2026 a 13/03/2026</td>
+                                        <td><span class="badge bg-primary rounded-pill">Em Andamento</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Avaliação documental</td>
+                                        <td>16/03/2026 a 20/03/2026</td>
+                                        <td><span class="badge bg-secondary rounded-pill">Aguardando</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Avaliação das candidaturas</td>
+                                        <td>23/03/2026 a 24/04/2026</td>
+                                        <td><span class="badge bg-secondary rounded-pill">Aguardando</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Resultado Preliminar</td>
+                                        <td>Até 27/04/2026</td>
+                                        <td><span class="badge bg-secondary rounded-pill">Aguardando</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update sidebar active state
+            document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // On mobile, close sidebar after selection
+            if (window.innerWidth < 992) {
+                document.querySelector('.sidebar').classList.remove('show');
+            }
+        }
+
+        function toggleOutroCargo() {
+            const select = document.getElementById('outroCargo');
+            const details = document.getElementById('divOutroCargoDetalhes');
+            if (select.value === 'sim') {
+                details.classList.remove('d-none');
+                // Add required attribute to inputs inside
+                details.querySelectorAll('input').forEach(input => input.required = true);
+            } else {
+                details.classList.add('d-none');
+                // Remove required attribute
+                details.querySelectorAll('input').forEach(input => input.required = false);
+            }
+        }
+
+        // University Management Logic
+        let uniCount = 0;
+        const maxUnis = 3;
+
+        const eixosData = [
+            {
+                id: '01',
+                title: 'SAÚDE PÚBLICA E SISTEMAS DE SAÚDE',
+                subtemas: [
+                    { id: '1.1', text: 'Redes de atenção à saúde' },
+                    { id: '1.2', text: 'Vigilância em saúde' },
+                    { id: '1.3', text: 'Determinantes sociais de saúde' }
+                ]
+            },
+            {
+                id: '02',
+                title: 'MOBILIDADE URBANA',
+                subtemas: [
+                    { id: '2.1', text: 'Planejamento da mobilidade' },
+                    { id: '2.2', text: 'Gestão de dados de tráfego' },
+                    { id: '2.3', text: 'Indicadores de mobilidade' }
+                ]
+            },
+            {
+                id: '03',
+                title: 'POLÍTICAS PÚBLICAS E GESTÃO GOVERNAMENTAL',
+                subtemas: [
+                    { id: '3.1', text: 'Gestão Orçamentária' },
+                    { id: '3.2', text: 'Políticas Públicas Locais: implementação e avaliação' },
+                    { id: '3.3', text: 'Planejamento Estratégico e Governança' }
+                ]
+            },
+            {
+                id: '04',
+                title: 'TECNOLOGIA E INOVAÇÃO',
+                subtemas: [
+                    { id: '4.1', text: 'Inteligência Artificial (IA)' },
+                    { id: '4.2', text: 'Análise de dados (Data Analytics)' },
+                    { id: '4.3', text: 'Experiência do cidadão (UX)' }
+                ]
+            },
+            {
+                id: '05',
+                title: 'SEGURANÇA E ORDEM PÚBLICA',
+                subtemas: [
+                    { id: '5.1', text: 'Prevenção à violência' },
+                    { id: '5.2', text: 'Tecnologia aplicada à segurança' },
+                    { id: '5.3', text: 'Gestão inteligente da defesa civil' }
+                ]
+            },
+            {
+                id: '06',
+                title: 'GESTÃO AMBIENTAL E URBANA',
+                subtemas: [
+                    { id: '6.1', text: 'Resiliência climática' },
+                    { id: '6.2', text: 'Preservação ambiental em áreas urbanas' },
+                    { id: '6.3', text: 'Sustentabilidade' }
+                ]
+            },
+            {
+                id: '07',
+                title: 'EDUCAÇÃO PÚBLICA',
+                subtemas: [
+                    { id: '7.1', text: 'Gestão da educação básica' },
+                    { id: '7.2', text: 'Políticas educacionais' }
+                ]
+            }
+        ];
+
+        function addUniversity() {
+            if (uniCount >= maxUnis) return;
+
+            uniCount++;
+            const container = document.getElementById('universitiesContainer');
+            const uniId = `uni_${Date.now()}`;
+
+            const uniHtml = `
+                <div class="card mb-4 border-primary" id="${uniId}">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                        <h5 class="m-0"><i class="bi bi-mortarboard-fill me-2"></i>Universidade ${uniCount}</h5>
+                        ${uniCount > 1 ? `<button type="button" class="btn btn-sm btn-light text-danger" onclick="removeUniversity('${uniId}')"><i class="bi bi-trash"></i> Remover</button>` : ''}
+                    </div>
+                    <div class="card-body bg-light">
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label required">Nome da Universidade</label>
+                                <input type="text" class="form-control" required name="uni_name_${uniId}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label required">País</label>
+                                <input type="text" class="form-control" required name="uni_country_${uniId}">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label required">Curso Pretendido</label>
+                                <input type="text" class="form-control" required name="uni_course_${uniId}">
+                            </div>
+                        </div>
+                        
+                        <label class="form-label required mb-2">Selecione o Eixo e Subtema de Interesse:</label>
+                        <div class="accordion" id="accordion_${uniId}">
+                            ${eixosData.map(eixo => `
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_${uniId}_${eixo.id}">
+                                            <span class="fw-bold me-2 text-primary">${eixo.id}</span> ${eixo.title}
+                                        </button>
+                                    </h2>
+                                    <div id="collapse_${uniId}_${eixo.id}" class="accordion-collapse collapse" data-bs-parent="#accordion_${uniId}">
+                                        <div class="accordion-body">
+                                            <div class="list-group">
+                                                ${eixo.subtemas.map(sub => `
+                                                    <label class="list-group-item list-group-item-action d-flex gap-3">
+                                                        <input class="form-check-input flex-shrink-0" type="radio" name="subtema_${uniId}" value="${eixo.id}|${sub.id}" required>
+                                                        <span>
+                                                            <strong class="d-block text-secondary">Subtema ${sub.id}</strong>
+                                                            ${sub.text}
+                                                        </span>
+                                                    </label>
+                                                `).join('')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.insertAdjacentHTML('beforeend', uniHtml);
+            updateButtons();
+        }
+
+        function removeUniversity(id) {
+            document.getElementById(id).remove();
+            uniCount--;
+            updateButtons();
+        }
+
+        function updateButtons() {
+            const btn = document.getElementById('btnAddUni');
+            const alert = document.getElementById('maxUniAlert');
+
+            if (uniCount >= maxUnis) {
+                btn.disabled = true;
+                alert.classList.remove('d-none');
+            } else {
+                btn.disabled = false;
+                alert.classList.add('d-none');
+            }
+        }
+
+        // Initialize with one university
+        document.addEventListener('DOMContentLoaded', () => {
+            addUniversity();
+        });
+
+        // Form Validation
+        (() => {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+
+                        // Find first invalid element and scroll to it
+                        const firstInvalid = form.querySelector(':invalid');
+                        if (firstInvalid) {
+                            firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    } else {
+                        event.preventDefault();
+
+                        // Gather Data for Simulation
+                        const universities = [];
+                        document.querySelectorAll('[id^="uni_"]').forEach(uniCard => {
+                            const id = uniCard.id;
+                            const name = uniCard.querySelector(`[name="uni_name_${id}"]`).value;
+                            const country = uniCard.querySelector(`[name="uni_country_${id}"]`).value;
+                            const course = uniCard.querySelector(`[name="uni_course_${id}"]`).value;
+                            const selectedSubtema = uniCard.querySelector(`[name="subtema_${id}"]:checked`);
+
+                            if (selectedSubtema) {
+                                const [eixoId, subId] = selectedSubtema.value.split('|');
+                                universities.push({
+                                    name, country, course, eixoId, subId
+                                });
+                            }
+                        });
+
+                        console.log('Payload Simulado:', { universities });
+
+                        // Simulate submission
+                        const btn = form.querySelector('button[type="submit"]');
+                        const originalText = btn.innerHTML;
+                        btn.disabled = true;
+                        btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
+
+                        setTimeout(() => {
+                            alert(`Inscrição enviada com sucesso!\n\nUniversidades cadastradas: ${universities.length}`);
+                            btn.disabled = false;
+                            btn.innerHTML = originalText;
+                        }, 1500);
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+
+</html>
