@@ -1,0 +1,265 @@
+﻿Padrão do plano de fundo
+
+Descrição gerada automaticamente com confiança baixa 
+
+
+
+PROGRAMA TALENTOS PÚBLICOS RECIFE - TRAJETÓRIAS
+SUGESTÃO DE FLUXO SISTEMA - EMPREL
+
+
+
+
+NO PORTAL (COM ÁREA LOGADA):
+
+
+Preencher formulário de inscrição
+Interposição de recursos
+Inclusão de documentos complementares
+Publicações
+
+
+PARA O FORMULÁRIO:
+
+
+Campos readonly preenchidos no carregamento da página
+* nome completo
+* CPF
+* data de nascimento
+* matrícula (somente números)
+* cargo
+* vínculo - lista suspensa: efetivo, estatutário ou outro (colocar campo para escrever)
+* data de admissão
+
+
+
+
+Deixar para livre escrita.
+
+
+
+
+* nacionalidade
+* lotação: orgão e/ou secretaria
+* Pessoa com Deficiência (PcD) - sim ou não 
+* gênero - lista suspensa
+* Raça/Cor - lista suspensa
+* e-mail
+* telefone para contato
+* faixa de remuneração - lista suspensa: Até R$8.999,99, De R$9.000,00 a R$12.999,99, De R$13.000,00 a R$14.999,99 ou Acima de R$14.999,99. Colocar texto: Verifique item 4.4.2 do Edital.
+* Possui mais de um cargo público efetivo no âmbito da Prefeitura? Lista suspensa: não ou sim (nesse caso abrir para prencher: matrícula e unidade de lotação do segundo cargo efetivo. Colocar texto: verifique item 8.11 do Edital.
+
+
+1. Requisitos básicos
+
+
+Colocar em formato de checkbox.
+
+
+Declaro, sob as penas da lei, que:
+* sou servidor público efetivo e estável do Poder Executivo do Município de Recife;
+* possuo graduação completa até a data de publicação do Edital;
+* possuo vínculo ativo com órgão ou entidade da administração pública direta ou indireta da Prefeitura da Cidade do Recife;
+* não estar cedido, requisitado ou em exercício provisório em órgãos ou entidades de qualquer dos Poderes da União, dos Estados, do Distrito Federal ou de outros Municípios;
+* não possuo os requisitos para aposentadoria compulsória antes do término do período em que devo permanecer no órgão após o curso;
+* iniciei o processo de candidatura (“application”) ou obtive carta de aceite/admissão em programas de mestrado pleno presencial em universidades internacionais de excelência, nas áreas do conhecimento destacadas neste edital;
+* mantenho compromisso de retorno e aplicação do conhecimento adquirido, de forma a contribuir para a melhoria da gestão pública e o fortalecimento institucional no município de Recife;
+* não tenho vínculo de parentesco em até terceiro grau com membros da comissão organizadora, gestores com poder de decisão sobre o presente processo ou com membros do Instituto Trajetórias
+
+
+2. Documentação comprobatória
+
+
+Cadastrar para envio apenas de PDF e o sistema deve bloquear submissão sem documentos obrigatórios.
+
+
+1. Currículo atualizado (Anexo I); obrigatório
+2. Comprovante de graduação concluída (diploma ou declaração oficial); obrigatório
+3. Carta de aceite/admissão ou comprovante de inscrição em processo seletivo (“application”) ativo - habilitar a possibilidade de múltiplos envios. obrigatório
+4. Carta de Motivação (Anexo II);obrigatório
+5. Plano de Aplicação (Anexo III) ;obrigatório
+6. Formalização da escolha definitiva da Universidade NÃO obrigatório
+7. Carta de aceite versão definitiva NÃO obrigatório
+
+
+     4. Dados acadêmicos e de pesquisa
+
+
+* Universidade que iniciou o processo de aplicação. O candidato pode incluir mais de uma opção. Colocar texto: Verifique item 1.4 do Edital
+* País da Universidade
+* Curso pretendido
+* Subtemas e alinhamento estratégico Colocar essa tabela em formato de lista suspensa.  O candidato pode se inscrever em mais de uma opção
+
+
+CÓDIGO DE OPÇÃO
+	ÁREA PRIORITÁRIA (EIXO ESTRATÉGICO)
+	SUBTEMAS DE INTERESSE (ESCOPO)
+	ALINHAMENTO ESTRATÉGICO E RETORNO INSTITUCIONAL ESPERADO
+	01
+	SAÚDE PÚBLICA E SISTEMAS DE SAÚDE
+	1.1 Redes de atenção à saúde
+1.2 Vigilância em saúde
+1.3 Determinantes sociais de saúde
+	Projetos que visem o fortalecimento do SUS municipal, com foco na integração das redes de cuidado e na análise epidemiológica para tomada de decisão.
+	02
+	MOBILIDADE URBANA
+	2.1 Planejamento da mobilidade
+2.2 Gestão de dados de tráfego
+2.3 Indicadores de mobilidade
+	Formações voltadas à gestão moderna do trânsito e transporte, priorizando soluções baseadas em evidências, dados e mobilidade sustentável.
+	03
+	POLÍTICAS PÚBLICAS E GESTÃO GOVERNAMENTAL
+	3.1 Gestão Orçamentária
+3.2 Políticas Públicas Locais: implementação e avaliação
+3.3 Planejamento Estratégico e Governança
+	Capacitação para modernizar a máquina pública, com foco na eficiência do gasto, transparência e no ciclo completo (desenho a avaliação) de políticas municipais.
+	04
+	TECNOLOGIA E INOVAÇÃO
+	4.1 Inteligência Artificial (IA)
+4.2 Análise de dados (Data Analytics)
+4.3 Experiência do cidadão (UX)
+	Estudos que impulsionem a transformação digital do Recife, melhorando a interface dos serviços públicos e utilizando dados para predizer demandas.
+	05
+	SEGURANÇA E ORDEM PÚBLICA
+	5.1 Prevenção à violência
+5.2 Tecnologia aplicada à segurança
+5.3 Gestão inteligente da defesa civil
+	Formações que integrem tecnologia e inteligência para a redução da violência e para a gestão de riscos e desastres (Defesa Civil).
+	06
+	GESTÃO AMBIENTAL E URBANA
+	6.1 Resiliência climática
+6.2 Preservação ambiental em áreas urbanas
+6.3 Sustentabilidade
+	Projetos focados na adaptação da cidade às mudanças climáticas, manejo sustentável do espaço urbano e conservação do patrimônio ambiental.
+	07
+	EDUCAÇÃO PÚBLICA
+	7.1 Gestão da educação básica
+7.2 Políticas educacionais
+	Estudos direcionados à melhoria dos indicadores de qualidade do ensino, gestão pedagógica e administrativa das unidades escolares.
+	
+
+
+
+5. Revisão e envio
+Incluir texto abaixo:
+
+
+Declaro, sob as penas da Lei, que concordo com os termos que constam do Edital n° 01/2026 de Abertura de Inscrições bem como declaro que aceito que os meus dados pessoais, sensíveis ou não, sejam tratados e processados, de forma a possibilitar a efetiva execução da seleção para obtenção de afastamento remunerado para realização de mestrado pleno presencial, com a aplicação dos critérios de avaliação e seleção, autorizando expressamente a divulgação dos meus nomes, números de inscrição, critérios de desempate e das minhas notas, em observância aos princípios da publicidade e da transparência que regem a Administração Pública e nos termos da Lei federal n° 13.709, de 14 de agosto de 2018; e que não serão fornecidas a terceiros informações e/ou dados pessoais, sensíveis ou não de candidatos.
+Declaro, sob as penas da Lei, que os dados informados neste formulário são verdadeiros e que conheço e aceito todas as regras pertinentes ao concurso consignadas no Edital n° 01/2026 de Abertura de Inscrições.
+
+
+PARA O AVALIADOR:
+
+
+1. Candidato cumpriu requisitos de elegibilidade?
+* sim - candidato elegível, segue para critérios de pontuação
+* não - candidato não elegível. Encerra o processo.
+
+
+2. Critérios de pontuação - cadastrar o critério e descrição e programar para que não possa ser colocada nota maior que a pontuação máxima. O campo da pontuação deve ser em formato de número.
+
+
+Critério
+	Descrição
+	Pontuação Máxima
+	Observações
+	A) Excelência da Universidade / Programa de Destino
+	Comprovação de admissão em instituição de excelência global, demonstrada pelo posicionamento da universidade e/ou do programa específico no Top 100 dos rankings internacionais QS World University Rankings ou THE (Times Higher Education).
+	30 pontos
+	• Top 100 mundial em qualquer dos dois rankings: 30 pontos.
+• O(a) candidato(a) deverá indicar as universidades/programas no ato da inscrição.
+• Caso ainda não possua carta de aceite, a pontuação poderá ser atualizada pela banca após a apresentação do comprovante de admissão (respeitado o prazo do cronograma).
+	B) Plano de Aplicação e Alinhamento Estratégico
+	Capacidade de demonstrar a conexão direta entre o objeto do curso pretendido e os Subtemas de Interesse (Item 6.2), evidenciando o preenchimento de lacunas de conhecimento estratégicas.
+	Até 20 pontos
+	• Serão avaliadas propostas diretamente vinculadas às áreas do conhecimento estabelecidas neste edital.
+	 
+	Capacidade de descrever a viabilidade técnica e o impacto esperado, detalhando como a implementação do projeto contribuirá para a gestão municipal e gerará valor público após o retorno.
+	Até 20 pontos
+	• O plano deve demonstrar explicitamente a aplicação prática no retorno dos conhecimentos a serem adquiridos.
+	C) Carta de Motivação e Perfil
+	Capacidade de expor com clareza a trajetória pessoal e profissional, demonstrando coerência, impacto das ações realizadas até o momento e potencial de liderança.
+	Até 10 pontos
+	• As cartas deverão ter de 3.000 a 4.500 caracteres.
+ 
+• A avaliação considerará a clareza, coerência e a relevância da justificativa apresentada.
+	 
+	Capacidade de evidenciar diferenciais pessoais, contextualizando o mérito acadêmico/profissional com a superação de desafios e o perfil socioeconômico do candidato.
+	Até 10 pontos
+	 
+	D) Experiência Profissional
+	Comprovação de tempo de efetivo exercício no setor público.
+	10 pontos
+	• 3 a 5 anos de experiência: 5 pontos;
+• Acima de 6 anos de experiência: 10 pontos.
+• A contagem considerará o tempo de efetivo exercício até a data de submissão da candidatura.
+	TOTAL
+	 
+	100 PONTOS
+	
+
+	
+
+
+
+3. Aspectos importantes que precisam ser observados:
+2.1. O sistema deve ficar aberto para alteração das informações e inclusão de novas documentações durante todo o período de inscrição, conforme determina o Edital.
+8.2.2 A escolha definitiva da Universidade e do programa a ser cursado deverá ser formalizada pelo candidato classificado, conforme data estipulada no Cronograma (Item 3), sendo vedada a alteração da instituição após a assinatura do Termo de Outorga, salvo por motivo de força maior devidamente justificado e aceito pela Administração.
+8.4. Durante a vigência do prazo de inscrições previsto no Cronograma (item 3), será permitida a edição dos dados e a substituição ou inclusão de documentos anexados à proposta.
+ 8.4.1. Encerrado o período de inscrições, a documentação será considerada definitiva, vedada a inclusão posterior de novos arquivos por iniciativa do candidato, ressalvadas as hipóteses de solicitação oficial por parte da comissão organizadora para fins de instrução processual.
+ 8.4.2. Será permitida a inclusão, substituição ou complementação de documentos após a submissão da proposta, dentro do prazo estabelecido no item 3 - Cronograma, e/ou se formalmente solicitada pela Prefeitura do Recife durante o processo de análise.
+2.2. Será necessário incluir, no prazo definido pelo cronograma, a possibilidade de inclusão de recurso e de “Outros documentos necessários para fins de instrução processual”. NÃO obrigatório
+
+
+
+
+2.3. Cadastrar como critérios de desempate:
+1. Obtiver maior pontuação no critério "B) Plano de Aplicação e Alinhamento Estratégico";
+2. Obtiver maior pontuação no critério "C) Carta de Motivação e Perfil";
+3. For mulher, priorizando-se, entre elas, aquelas que se autodeclararam pretas, pardas ou indígenas no ato da inscrição;
+4. Se autodeclarou preto, pardo ou indígena (para candidatos do sexo masculino);
+5. Tenha sido investido no cargo público municipal na condição de Pessoa com Deficiência (PcD) ou tenha essa condição formalmente reconhecida pela Perícia Médica Municipal até a data de publicação deste Edital
+6. Tiver maior idade.
+2.4. O sistema deve obrigatoriamente:
+
+* Impedir lançamento de nota acima do máximo
+* Registrar justificativas quando necessário
+* Aplicar automaticamente critérios de desempate
+* Bloquear avaliação de candidato com conflito de interesse
+* Gerar trilha de auditoria (quem avaliou, quando, o quê)
+* Possibilitar que as notas sejam alteradas na fase de recurso (é necessário que haja o registro e a rastreabilidade das mudanças ocorridas
+
+
+CRONOGRAMA
+ 
+ATIVIDADES
+	DATAS
+	Lançamento do Edital
+	10/02/2026
+	Submissão de candidatura
+	De 10/02/2026 a 13/03/2026 (*)
+	Avaliação documental
+	16/03/2026 a 20/03/2026
+	Avaliação das candidaturas pela Comissão Organizadora
+	De 23/03/2026 a 24/04/2026
+	Entrega de documentação complementar - Carta de aceite das universidades de destino (se aplicável)
+	Até 21/04/2026 (*)
+	Divulgação do resultado preliminar das candidaturas aprovadas
+	Até 27/04/2026
+	Interposição de recurso administrativo do resultado preliminar
+	Prazo de 02 (dois) dias úteis após a divulgação do resultado preliminar*
+	Avaliação de recurso administrativo
+	Prazo de 02 (dois) dias úteis
+	Divulgação do resultado final das candidaturas aprovadas
+	A partir de 05/05/2026
+	Assinatura do Termo de Outorga
+	Até 15/05/2026
+	Início da implementação das bolsas
+	A partir de julho de 2026. A depender do cronograma da universidade de destino
+	(*) Todos os prazos vencem às 23h59min. A Prefeitura do Recife e o Instituto Trajetórias fornecerão suporte e informações aos candidatos até às 17h. Será considerado o horário oficial de Brasília/DF. 
+Fluxo:
+
+
+Etapa 1 – Análise de Admissibilidade: Verificação do atendimento aos requisitos formais e documentais estabelecidos no Item 6 e Item 7 deste edital. Candidaturas incompletas, intempestivas ou que não cumprirem os critérios mínimos de elegibilidade serão automaticamente inabilitadas.
+Etapa 2 – Avaliação de Mérito e Alinhamento: Análise qualitativa e quantitativa das propostas habilitadas, realizada pela Banca Examinadora conforme a matriz de pontuação definida no item 9.2.
+Etapa 3 – Classificação: Consolidação das notas, aplicação dos critérios de desempate, divulgação do resultado preliminar, com a consequente abertura de prazo para interposição de recursos administrativos por parte dos candidatos.
