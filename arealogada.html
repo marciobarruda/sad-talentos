@@ -1159,21 +1159,6 @@
                 btn.disabled = true;
                 alert.classList.remove('d-none');
             } else {
-                btn.disabled = false;
-                alert.classList.add('d-none');
-            }
-        }
-
-        // Initialize with one university
-        document.addEventListener('DOMContentLoaded', () => {
-            addUniversity();
-        });
-
-        // Form Validation
-        (() => {
-            'use strict'
-            const forms = document.querySelectorAll('.needs-validation')
-            Array.from(forms).forEach(form => {
                 form.addEventListener('submit', event => {
                     if (!form.checkValidity()) {
                         event.preventDefault()
@@ -1221,7 +1206,7 @@
                     form.classList.add('was-validated')
                 }, false)
             })
-        })()
+        }) ()
     </script>
 </body>
 
