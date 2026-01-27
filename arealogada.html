@@ -258,7 +258,7 @@
                         <div class="col-md-6">
                             <label class="form-label">Nome Completo</label>
                             <input type="text" class="form-control bg-light" readonly id="nomeCompleto"
-                                value="{{ $json[0].nomeCompleto }}">
+                                value="{{ $json.nomeCompleto }}">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">CPF</label>
@@ -268,7 +268,7 @@
                         <div class="col-md-3">
                             <label class="form-label">Data de Nascimento</label>
                             <input type="date" class="form-control bg-light" readonly id="dataNascimento"
-                                value="{{ $json[0].dataNascimento }}">
+                                value="{{ $json.dataNascimento }}">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Matrícula</label>
@@ -279,17 +279,17 @@
                         <div class="col-md-3">
                             <label class="form-label">Cargo</label>
                             <input type="text" class="form-control bg-light" readonly id="cargo"
-                                value="{{ $json[0].cargo }}">
+                                value="{{ $json.cargo }}">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Vínculo</label>
                             <input type="text" class="form-control bg-light" readonly id="vinculo"
-                                value="{{ $json[0].vinculo }}">
+                                value="{{ $json.vinculo }}">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Data de Admissão</label>
                             <input type="date" class="form-control bg-light" readonly id="dataAdmissao"
-                                value="{{ $json[0].dataAdmissao }}">
+                                value="{{ $json.dataAdmissao }}">
                         </div>
                     </div>
                 </div>
@@ -933,23 +933,23 @@
         // Objeto BIND com template variables do backend
         const BIND = {
             dadosComuns: {
-                cpf: `{{ $json[0].cpf }}`,
-                nomeCompleto: `{{ $json[0].nomeCompleto }}`,
-                dataNascimento: `{{ $json[0].dataNascimento }}`,
-                nacionalidade: `{{ $json[0].nacionalidade }}`,
-                lotacao: `{{ $json[0].lotacao }}`,
-                pcd: {{ $json[0].pcd }},
-        genero: `{{ $json[0].genero }}`,
-            racaCor: `{{ $json[0].racaCor }}`,
-                email: `{{ $json[0].email }}`,
-                    telefone: `{{ $json[0].telefone }}`
+                cpf: `{{ $json.cpf }}`,
+                nomeCompleto: `{{ $json.nomeCompleto }}`,
+                dataNascimento: `{{ $json.dataNascimento }}`,
+                nacionalidade: `{{ $json.nacionalidade }}`,
+                lotacao: `{{ $json.lotacao }}`,
+                pcd: {{ $json.pcd }},
+        genero: `{{ $json.genero }}`,
+            racaCor: `{{ $json.racaCor }}`,
+                email: `{{ $json.email }}`,
+                    telefone: `{{ $json.telefone }}`
             },
         vinculos: [
             {
-                matricula: `{{ $json[0].matricula }}`,
-                cargo: `{{ $json[0].cargo }}`,
-                vinculo: `{{ $json[0].vinculo }}`,
-                dataAdmissao: `{{ $json[0].dataAdmissao }}`
+                matricula: `{{ $json.matricula }}`,
+                cargo: `{{ $json.cargo }}`,
+                vinculo: `{{ $json.vinculo }}`,
+                dataAdmissao: `{{ $json.dataAdmissao }}`
             },
             {
                 matricula: `{{ $json[1].matricula }}`,
@@ -1254,7 +1254,7 @@
 
 
                 // Get first record for common fields (same for all matriculas)
-                const firstRecord = backendData[0];
+                const firstRecord = backendData;
 
                 // Populate common fields (readonly)
                 document.getElementById('nomeCompleto').value = firstRecord.nomeCompleto || '';
