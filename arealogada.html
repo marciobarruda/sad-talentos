@@ -257,15 +257,18 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label">Nome Completo</label>
-                            <input type="text" class="form-control bg-light" readonly id="nomeCompleto">
+                            <input type="text" class="form-control bg-light" readonly id="nomeCompleto"
+                                value="{{ $json[0].nomeCompleto }}">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">CPF</label>
-                            <input type="text" class="form-control bg-light" readonly id="cpf">
+                            <input type="text" class="form-control bg-light" readonly id="cpf"
+                                value="{{ $json[0].cpf }}">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Data de Nascimento</label>
-                            <input type="date" class="form-control bg-light" readonly id="dataNascimento">
+                            <input type="date" class="form-control bg-light" readonly id="dataNascimento"
+                                value="{{ $json[0].dataNascimento }}">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Matrícula</label>
@@ -275,15 +278,18 @@
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Cargo</label>
-                            <input type="text" class="form-control bg-light" readonly id="cargo">
+                            <input type="text" class="form-control bg-light" readonly id="cargo"
+                                value="{{ $json[0].cargo }}">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Vínculo</label>
-                            <input type="text" class="form-control bg-light" readonly id="vinculo">
+                            <input type="text" class="form-control bg-light" readonly id="vinculo"
+                                value="{{ $json[0].vinculo }}">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Data de Admissão</label>
-                            <input type="date" class="form-control bg-light" readonly id="dataAdmissao">
+                            <input type="date" class="form-control bg-light" readonly id="dataAdmissao"
+                                value="{{ $json[0].dataAdmissao }}">
                         </div>
                     </div>
                 </div>
@@ -933,25 +939,25 @@
                 nacionalidade: `{{ $json[0].nacionalidade }}`,
                 lotacao: `{{ $json[0].lotacao }}`,
                 pcd: {{ $json[0].pcd }},
-                genero: `{{ $json[0].genero }}`,
-                racaCor: `{{ $json[0].racaCor }}`,
+        genero: `{{ $json[0].genero }}`,
+            racaCor: `{{ $json[0].racaCor }}`,
                 email: `{{ $json[0].email }}`,
-                telefone: `{{ $json[0].telefone }}`
+                    telefone: `{{ $json[0].telefone }}`
             },
-            vinculos: [
-                {
-                    matricula: `{{ $json[0].matricula }}`,
-                    cargo: `{{ $json[0].cargo }}`,
-                    vinculo: `{{ $json[0].vinculo }}`,
-                    dataAdmissao: `{{ $json[0].dataAdmissao }}`
-                },
-                {
-                    matricula: `{{ $json[1].matricula }}`,
-                    cargo: `{{ $json[1].cargo }}`,
-                    vinculo: `{{ $json[1].vinculo }}`,
-                    dataAdmissao: `{{ $json[1].dataAdmissao }}`
-                }
-            ]
+        vinculos: [
+            {
+                matricula: `{{ $json[0].matricula }}`,
+                cargo: `{{ $json[0].cargo }}`,
+                vinculo: `{{ $json[0].vinculo }}`,
+                dataAdmissao: `{{ $json[0].dataAdmissao }}`
+            },
+            {
+                matricula: `{{ $json[1].matricula }}`,
+                cargo: `{{ $json[1].cargo }}`,
+                vinculo: `{{ $json[1].vinculo }}`,
+                dataAdmissao: `{{ $json[1].dataAdmissao }}`
+            }
+        ]
         };
 
         // Função auxiliar para valores seguros
@@ -960,7 +966,7 @@
         }
     </script>
 
-    
+
 
     <script>
         function showSection(sectionId) {
@@ -1240,12 +1246,12 @@
                 document.getElementById('racaCor').value = safeValue(dc.racaCor);
                 document.getElementById('email').value = safeValue(dc.email);
                 document.getElementById('telefone').value = safeValue(dc.telefone);
-                
+
                 const pcdCheckbox = document.getElementById('pcd');
                 if (pcdCheckbox) {
                     pcdCheckbox.checked = dc.pcd === true || dc.pcd === 'true';
                 }
-                
+
 
                 // Get first record for common fields (same for all matriculas)
                 const firstRecord = backendData[0];
