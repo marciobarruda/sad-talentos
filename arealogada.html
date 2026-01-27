@@ -1174,7 +1174,48 @@
         }
 
         // Initialize with one university
+        // Initialize with backend data when page loads
         document.addEventListener('DOMContentLoaded', () => {
+            // Example: Replace this with actual data from your backend
+            // The data should be available as a global variable or injected via template
+            const backendData = window.userData || []; // Assuming data is in window.userData
+            
+            if (backendData && backendData.length > 0) {
+                // Get first record for common fields (same for all matriculas)
+                const firstRecord = backendData[0];
+                
+                // Populate common fields (readonly)
+                document.getElementById('nomeCompleto').value = firstRecord.nomeCompleto || '';
+                document.getElementById('cpf').value = firstRecord.cpf || '';
+                document.getElementById('dataNascimento').value = firstRecord.dataNascimento || '';
+                
+                // Populate editable fields
+                document.getElementById('nacionalidade').value = firstRecord.nacionalidade?.toLowerCase() || '';
+                document.getElementById('lotacao').value = firstRecord.lotacao || '';
+                document.getElementById('genero').value = firstRecord.genero || '';
+                document.getElementById('racaCor').value = firstRecord.racaCor || '';
+                document.getElementById('email').value = firstRecord.email || '';
+                document.getElementById('telefone').value = firstRecord.telefone || '';
+                
+                // Handle PCD checkbox
+                const pcdCheckbox = document.getElementById('pcd');
+                if (pcdCheckbox) {
+                    pcdCheckbox.checked = firstRecord.pcd === true || firstRecord.pcd === 'true';
+                }
+                
+                // Transform data for matriculas (extract only matricula-specific fields)
+                const matriculasData = backendData.map(record => ({
+                    matricula: record.matricula,
+                    cargo: record.cargo,
+                    vinculo: record.vinculo,
+                    dataAdmissao: record.dataAdmissao
+                }));
+                
+                // Initialize matriculas system
+                initializeMatriculas(matriculasData);
+            }
+            
+            // Also initialize university management
             addUniversity();
         });
 
