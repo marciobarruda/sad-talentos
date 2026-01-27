@@ -265,21 +265,6 @@
                             <input type="text" class="form-control bg-light" value="{{$json.cpf}}" readonly id="cpf">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Data de Nascimento</label>
-                            <input type="date" class="form-control bg-light" value="{{$json.dataNascimento}}" readonly
-                                id="dataNascimento">
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Matrícula</label>
-                            <select class="form-select bg-light" id="matricula" disabled>
-                                <option value="123456" selected>123456</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Cargo</label>
-                            <input type="text" class="form-control bg-light" readonly id="cargo">
-                        </div>
-                        <div class="col-md-3">
                             <label class="form-label">Vínculo</label>
                             <input type="text" class="form-control bg-light" readonly id="vinculo">
                         </div>
@@ -932,26 +917,26 @@
                 dataNascimento: `{{$json.dataNascimento}}`,
                 nacionalidade: `{{$json.nacionalidade}}`,
                 lotacao: `{{$json.lotacao}}`,
-                pcd: {{$json.pcd}},
-                genero: `{{$json.genero}}`,
-                racaCor: `{{$json.racaCor}}`,
+                pcd: {{ $json.pcd }},
+        genero: `{{$json.genero}}`,
+            racaCor: `{{$json.racaCor}}`,
                 email: `{{$json.email}}`,
-                telefone: `{{$json.telefone}}`
+                    telefone: `{{$json.telefone}}`
             },
-            vinculos: [
-                {
-                    matricula: `{{$json.vinculos[0].matricula}}`,
-                    cargo: `{{$json.vinculos[0].cargo}}`,
-                    vinculo: `{{$json.vinculos[0].vinculo}}`,
-                    dataAdmissao: `{{$json.vinculos[0].dataAdmissao}}`
-                },
-                {
-                    matricula: `{{$json.vinculos[1].matricula}}`,
-                    cargo: `{{$json.vinculos[1].cargo}}`,
-                    vinculo: `{{$json.vinculos[1].vinculo}}`,
-                    dataAdmissao: `{{$json.vinculos[1].dataAdmissao}}`
-                }
-            ]
+        vinculos: [
+            {
+                matricula: `{{$json.vinculos[0].matricula}}`,
+                cargo: `{{$json.vinculos[0].cargo}}`,
+                vinculo: `{{$json.vinculos[0].vinculo}}`,
+                dataAdmissao: `{{$json.vinculos[0].dataAdmissao}}`
+            },
+            {
+                matricula: `{{$json.vinculos[1].matricula}}`,
+                cargo: `{{$json.vinculos[1].cargo}}`,
+                vinculo: `{{$json.vinculos[1].vinculo}}`,
+                dataAdmissao: `{{$json.vinculos[1].dataAdmissao}}`
+            }
+        ]
         };
 
         // Função auxiliar para valores seguros
@@ -963,10 +948,10 @@
         function onMatriculaChange() {
             const selectMatricula = document.getElementById('matricula');
             const selectedIndex = parseInt(selectMatricula.value);
-            
+
             // Use BIND.vinculos
             const vinculoData = BIND.vinculos[selectedIndex];
-            
+
             if (vinculoData) {
                 document.getElementById('cargo').value = safeValue(vinculoData.cargo);
                 document.getElementById('vinculo').value = safeValue(vinculoData.vinculo);
