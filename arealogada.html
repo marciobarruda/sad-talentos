@@ -257,23 +257,22 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label">Nome Completo</label>
-                            <input type="text" class="form-control bg-light" readonly id="nomeCompleto"
-                                value="{{ $json.nomeCompleto }}">
+                            <input type="text" class="form-control bg-light" value="{{$json.nomeCompleto}}" readonly
+                                id="nomeCompleto">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">CPF</label>
-                            <input type="text" class="form-control bg-light" readonly id="cpf" value="{{ $json.cpf }}">
+                            <input type="text" class="form-control bg-light" value="{{$json.cpf}}" readonly id="cpf">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Data de Nascimento</label>
-                            <input type="date" class="form-control bg-light" readonly id="dataNascimento"
-                                value="{{ $json.dataNascimento }}">
+                            <input type="date" class="form-control bg-light" value="{{$json.dataNascimento}}" readonly
+                                id="dataNascimento">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Matrícula</label>
-                            <select class="form-select bg-light" id="matricula" onchange="onMatriculaChange()">
-                                <option value="0" selected>{{ $json.vinculos[0].matricula }}</option>
-                                <option value="1">{{ $json.vinculos[1].matricula }}</option>
+                            <select class="form-select bg-light" id="matricula" disabled>
+                                <option value="123456" selected>123456</option>
                             </select>
                         </div>
                         <div class="col-md-3">
@@ -303,16 +302,16 @@
                                 <option value="afegane">Afegane</option>
                                 <option value="sul-africana">Sul-Africana</option>
                                 <option value="albanesa">Albanesa</option>
-                                <option value="alema">Alem&atilde;</option>
+                                <option value="alema">AlemÃ£</option>
                                 <option value="andorrana">Andorrana</option>
                                 <option value="angolana">Angolana</option>
                                 <option value="antiguana">Antiguana</option>
                                 <option value="saudita">Saudita</option>
                                 <option value="argelina">Argelina</option>
                                 <option value="argentina">Argentina</option>
-                                <option value="armenia">Arm&ecirc;nia</option>
+                                <option value="armenia">ArmÃªnia</option>
                                 <option value="australiana">Australiana</option>
-                                <option value="austriaca">Austr&iacute;aca</option>
+                                <option value="austriaca">AustrÃ­aca</option>
                                 <option value="azerbaijana">Azerbaijana</option>
                                 <option value="bahamense">Bahamense</option>
                                 <option value="bangladeshiana">Bangladeshiana</option>
@@ -323,10 +322,10 @@
                                 <option value="beninense">Beninense</option>
                                 <option value="bielorrussa">Bielorrussa</option>
                                 <option value="boliviana">Boliviana</option>
-                                <option value="bosniaca">B&oacute;sniaca</option>
+                                <option value="bosniaca">BÃ³sniaca</option>
                                 <option value="botsuanesa">Botsuanesa</option>
                                 <option value="bruneiana">Bruneiana</option>
-                                <option value="bulgara">B&uacute;lgara</option>
+                                <option value="bulgara">BÃºlgara</option>
                                 <option value="burquinense">Burquinense</option>
                                 <option value="burundesa">Burundesa</option>
                                 <option value="butanesa">Butanesa</option>
@@ -352,7 +351,7 @@
                                 <option value="dinamarquesa">Dinamarquesa</option>
                                 <option value="djiboutiana">Djiboutiana</option>
                                 <option value="dominicana">Dominicana</option>
-                                <option value="egipcia">Eg&iacute;pcia</option>
+                                <option value="egipcia">EgÃ­pcia</option>
                                 <option value="salvadorenha">Salvadorenha</option>
                                 <option value="emiradense">Emiradense</option>
                                 <option value="equatoriana">Equatoriana</option>
@@ -361,8 +360,8 @@
                                 <option value="eslovena">Eslovena</option>
                                 <option value="espanhola">Espanhola</option>
                                 <option value="estadunidense">Estadunidense</option>
-                                <option value="estonia">Est&ocirc;nia</option>
-                                <option value="etiope">Et&iacute;ope</option>
+                                <option value="estonia">EstÃ´nia</option>
+                                <option value="etiope">EtÃ­ope</option>
                                 <option value="fijiana">Fijiana</option>
                                 <option value="filipina">Filipina</option>
                                 <option value="finlandesa">Finlandesa</option>
@@ -377,13 +376,13 @@
                                 <option value="guianense">Guianense</option>
                                 <option value="guineense">Guineense</option>
                                 <option value="equatoguineana">Equatoguineana</option>
-                                <option value="guine-bissauense">Guin&eacute;-Bissauense</option>
+                                <option value="guine-bissauense">GuinÃ©-Bissauense</option>
                                 <option value="haitiana">Haitiana</option>
                                 <option value="hondurenha">Hondurenha</option>
-                                <option value="hungara">H&uacute;ngara</option>
+                                <option value="hungara">HÃºngara</option>
                                 <option value="iemenita">Iemenita</option>
                                 <option value="indiana">Indiana</option>
-                                <option value="indonesia">Indon&eacute;sia</option>
+                                <option value="indonesia">IndonÃ©sia</option>
                                 <option value="iraniana">Iraniana</option>
                                 <option value="iraquiana">Iraquiana</option>
                                 <option value="irlandesa">Irlandesa</option>
@@ -398,14 +397,14 @@
                                 <option value="kuwaitiana">Kuwaitiana</option>
                                 <option value="laosiana">Laosiana</option>
                                 <option value="lesota">Lesota</option>
-                                <option value="let&Atilde;£">Let&atilde;</option>
+                                <option value="letÃ£">LetÃ£</option>
                                 <option value="libanesa">Libanesa</option>
                                 <option value="liberiana">Liberiana</option>
-                                <option value="libia">L&iacute;bia</option>
+                                <option value="libia">LÃ­bia</option>
                                 <option value="liechtensteiniana">Liechtensteiniana</option>
                                 <option value="lituana">Lituana</option>
                                 <option value="luxemburguesa">Luxemburguesa</option>
-                                <option value="maced&Atilde;´nia">Maced&ocirc;nia</option>
+                                <option value="macedÃ´nia">MacedÃ´nia</option>
                                 <option value="madagascarense">Madagascarense</option>
                                 <option value="malaia">Malaia</option>
                                 <option value="malauiana">Malauiana</option>
@@ -417,8 +416,8 @@
                                 <option value="mauriciana">Mauriciana</option>
                                 <option value="mauritana">Mauritana</option>
                                 <option value="mexicana">Mexicana</option>
-                                <option value="micronesia">Micron&eacute;sia</option>
-                                <option value="mo&Atilde;§ambicana">Mo&ccedil;ambicana</option>
+                                <option value="micronesia">MicronÃ©sia</option>
+                                <option value="moÃ§ambicana">MoÃ§ambicana</option>
                                 <option value="moldava">Moldava</option>
                                 <option value="monegasca">Monegasca</option>
                                 <option value="mongol">Mongol</option>
@@ -452,22 +451,22 @@
                                 <option value="salomonense">Salomonense</option>
                                 <option value="samoana">Samoana</option>
                                 <option value="santa-lucense">Santa-Lucense</option>
-                                <option value="sao-cristovense">S&atilde;o-Cristovense</option>
-                                <option value="sao-marinense">S&atilde;o-Marinense</option>
-                                <option value="sao-tomense">S&atilde;o-Tomense</option>
+                                <option value="sao-cristovense">SÃ£o-Cristovense</option>
+                                <option value="sao-marinense">SÃ£o-Marinense</option>
+                                <option value="sao-tomense">SÃ£o-Tomense</option>
                                 <option value="senegalesa">Senegalesa</option>
                                 <option value="serra-leonesa">Serra-Leonesa</option>
-                                <option value="servia">S&eacute;rvia</option>
+                                <option value="servia">SÃ©rvia</option>
                                 <option value="seichelense">Seichelense</option>
                                 <option value="singapuriana">Singapuriana</option>
-                                <option value="siria">S&iacute;ria</option>
+                                <option value="siria">SÃ­ria</option>
                                 <option value="somali">Somali</option>
                                 <option value="cingalesa">Cingalesa</option>
                                 <option value="suazi">Suazi</option>
                                 <option value="sudanesa">Sudanesa</option>
                                 <option value="sul-sudanesa">Sul-Sudanesa</option>
                                 <option value="sueca">Sueca</option>
-                                <option value="sui&Atilde;§a">Su&iacute;&ccedil;a</option>
+                                <option value="suiÃ§a">SuÃ­Ã§a</option>
                                 <option value="surinamesa">Surinamesa</option>
                                 <option value="tailandesa">Tailandesa</option>
                                 <option value="tanzaniana">Tanzaniana</option>
@@ -496,53 +495,51 @@
                             <label class="form-label required">Lotação (Órgão/Secretaria)</label>
                             <select class="form-select" required id="lotacao">
                                 <option value="">Selecione...</option>
-                                <option value="EMPREL">EMPREL - Empresa Municipal de Inform&aacute;tica</option>
-                                <option value="SEPLAGTD">SEPLAGTD - Secretaria de Planejamento, Gest&atilde;o e
-                                    Transforma&ccedil;&atilde;o Digital</option>
-                                <option value="SDECTI">SDECTI - Secretaria de Desenvolvimento Econ&ocirc;mico,
-                                    Ci&ecirc;ncia, Tecnologia e Inova&ccedil;&atilde;o</option>
+                                <option value="EMPREL">EMPREL - Empresa Municipal de InformÃ¡tica</option>
+                                <option value="SEPLAGTD">SEPLAGTD - Secretaria de Planejamento, GestÃ£o e
+                                    TransformaÃ§Ã£o Digital</option>
+                                <option value="SDECTI">SDECTI - Secretaria de Desenvolvimento EconÃ´mico, CiÃªncia,
+                                    Tecnologia e InovaÃ§Ã£o</option>
                                 <option value="AESP">AESP - Gabinete de Assessoria Especial</option>
-                                <option value="PGM">PGM - Procuradoria-Geral do Munic&iacute;pio</option>
+                                <option value="PGM">PGM - Procuradoria-Geral do MunicÃ­pio</option>
                                 <option value="GVP">GVP - Gabinete Vice-Prefeitura</option>
                                 <option value="GPREF">GPREF - Gabinete Prefeito</option>
                                 <option value="GABPE">GABPE - Gabinete de Projetos Especiais</option>
                                 <option value="GABCENTRO">GABCENTRO - Gabineto do Centro do Recife</option>
-                                <option value="GABCOM">GABCOM - Gabinete de Comunica&ccedil;&atilde;o</option>
-                                <option value="CGM">CGM - Controladoria-Geral do Munic&iacute;pio</option>
-                                <option value="AMPASS">AMPASS - Autarquia Municipal de Previd&ecirc;ncia e
-                                    Assist&ecirc;ncia &agrave; Sa&uacute;de dos Servidores</option>
+                                <option value="GABCOM">GABCOM - Gabinete de ComunicaÃ§Ã£o</option>
+                                <option value="CGM">CGM - Controladoria-Geral do MunicÃ­pio</option>
+                                <option value="AMPASS">AMPASS - Autarquia Municipal de PrevidÃªncia e AssistÃªncia Ã 
+                                    SaÃºde dos Servidores</option>
                                 <option value="CONVIVA">CONVIVA - CONVIVA Mercados e Feiras- Autarquia Municipal
                                 </option>
-                                <option value="CTTU">CTTU - Autarquia de Tr&acirc;nsito e Transporte Urbano do Recife
+                                <option value="CTTU">CTTU - Autarquia de TrÃ¢nsito e Transporte Urbano do Recife
                                 </option>
-                                <option value="EMLURB">EMLURB - Autarquia de Manuten&ccedil;&atilde;o e Limpeza Urbana
-                                    do Recife</option>
-                                <option value="URB">URB - Autarquia de Urbaniza&ccedil;&atilde;o do Recife</option>
-                                <option value="FCCR">FCCR - Funda&ccedil;&atilde;o de Cultura Cidade do Recife</option>
-                                <option value="SEGOV">SEGOV - Secretaria de Governo e Participa&ccedil;&atilde;o Social
+                                <option value="EMLURB">EMLURB - Autarquia de ManutenÃ§Ã£o e Limpeza Urbana do Recife
                                 </option>
-                                <option value="SEFIN">SEFIN - Secretaria de Finan&ccedil;as</option>
+                                <option value="URB">URB - Autarquia de UrbanizaÃ§Ã£o do Recife</option>
+                                <option value="FCCR">FCCR - FundaÃ§Ã£o de Cultura Cidade do Recife</option>
+                                <option value="SEGOV">SEGOV - Secretaria de Governo e ParticipaÃ§Ã£o Social</option>
+                                <option value="SEFIN">SEFIN - Secretaria de FinanÃ§as</option>
                                 <option value="SEINFRA">SEINFRA - Secretaria de Infraestrutura</option>
                                 <option value="SMAS">SMAS - Secretaria de Meio Ambiente e Sustentabilidade</option>
-                                <option value="SEPUL">SEPUL - Secretaria de Pol&iacute;tica Urbana e Licenciamento
-                                </option>
+                                <option value="SEPUL">SEPUL - Secretaria de PolÃ­tica Urbana e Licenciamento</option>
                                 <option value="SESAN">SESAN - Secretaria de Saneamento</option>
-                                <option value="SEHAB">SEHAB - Secretaria de Habita&ccedil;&atilde;o</option>
-                                <option value="SESEC">SESEC - Secretaria de Seguran&ccedil;a Cidad&atilde;</option>
+                                <option value="SEHAB">SEHAB - Secretaria de HabitaÃ§Ã£o</option>
+                                <option value="SESEC">SESEC - Secretaria de SeguranÃ§a CidadÃ£</option>
                                 <option value="SEMUL">SEMUL - Secretaria da Mulher</option>
                                 <option value="SDSDHJPD">SDSDHJPD - Secretaria de Desenvolvimento Social, Direitos
-                                    Humanos, Juventude e Pol&iacute;ticas sobre Drogas</option>
+                                    Humanos, Juventude e PolÃ­ticas sobre Drogas</option>
                                 <option value="SECULT">SECULT - Secretaria de Cultura</option>
                                 <option value="SESP">SESP - Secretaria de Esportes</option>
                                 <option value="SETURL">SETURL - Secretaria de Turismo e Lazer</option>
-                                <option value="STQP">STQP - Secretaria de Trabalho e Qualifica&ccedil;&atilde;o
-                                    Profissional</option>
-                                <option value="SEDUC">SEDUC - Secretaria de Educa&ccedil;&atilde;o</option>
-                                <option value="SESAU">SESAU - Secretaria de Sa&uacute;de</option>
+                                <option value="STQP">STQP - Secretaria de Trabalho e QualificaÃ§Ã£o Profissional
+                                </option>
+                                <option value="SEDUC">SEDUC - Secretaria de EducaÃ§Ã£o</option>
+                                <option value="SESAU">SESAU - Secretaria de SaÃºde</option>
                                 <option value="GIMP">GIMP - Gabinete de Imprensa</option>
                                 <option value="PROMORAR">PROMORAR - Gabinete de Gerenciamento do Programa de
-                                    Requalifica&ccedil;&atilde;o e Resili&ecirc;ncia Urbana em &Aacute;reas de
-                                    Vulnerabilidade Socioambiental</option>
+                                    RequalificaÃ§Ã£o e ResiliÃªncia Urbana em Ãreas de Vulnerabilidade Socioambiental
+                                </option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -930,40 +927,58 @@
         // Objeto BIND com template variables do backend
         const BIND = {
             dadosComuns: {
-                cpf: `{{ $json.cpf }}`,
-                nomeCompleto: `{{ $json.nomeCompleto }}`,
-                dataNascimento: `{{ $json.dataNascimento }}`,
-                nacionalidade: `{{ $json.nacionalidade }}`,
-                lotacao: `{{ $json.lotacao }}`,
-                pcd: {{ $json.pcd }},
-        genero: `{{ $json.genero }}`,
-            racaCor: `{{ $json.racaCor }}`,
-                email: `{{ $json.email }}`,
-                    telefone: `{{ $json.telefone }}`
+                cpf: `{{$json.cpf}}`,
+                nomeCompleto: `{{$json.nomeCompleto}}`,
+                dataNascimento: `{{$json.dataNascimento}}`,
+                nacionalidade: `{{$json.nacionalidade}}`,
+                lotacao: `{{$json.lotacao}}`,
+                pcd: {{$json.pcd}},
+                genero: `{{$json.genero}}`,
+                racaCor: `{{$json.racaCor}}`,
+                email: `{{$json.email}}`,
+                telefone: `{{$json.telefone}}`
             },
-        vinculos: [
-            {
-                matricula: `{{ $json.vinculos[0].matricula }}`,
-                cargo: `{{ $json.vinculos[0].cargo }}`,
-                vinculo: `{{ $json.vinculos[0].vinculo }}`,
-                dataAdmissao: `{{ $json.vinculos[0].dataAdmissao }}`
-            },
-            {
-                matricula: `{{ $json.vinculos[1].matricula }}`,
-                cargo: `{{ $json.vinculos[1].cargo }}`,
-                vinculo: `{{ $json.vinculos[1].vinculo }}`,
-                dataAdmissao: `{{ $json.vinculos[1].dataAdmissao }}`
-            }
-        ]
+            vinculos: [
+                {
+                    matricula: `{{$json.vinculos[0].matricula}}`,
+                    cargo: `{{$json.vinculos[0].cargo}}`,
+                    vinculo: `{{$json.vinculos[0].vinculo}}`,
+                    dataAdmissao: `{{$json.vinculos[0].dataAdmissao}}`
+                },
+                {
+                    matricula: `{{$json.vinculos[1].matricula}}`,
+                    cargo: `{{$json.vinculos[1].cargo}}`,
+                    vinculo: `{{$json.vinculos[1].vinculo}}`,
+                    dataAdmissao: `{{$json.vinculos[1].dataAdmissao}}`
+                }
+            ]
         };
 
         // Função auxiliar para valores seguros
         function safeValue(v) {
             return v && v !== 'undefined' && v !== 'null' ? v : '';
         }
+
+        // Function called when matricula changes
+        function onMatriculaChange() {
+            const selectMatricula = document.getElementById('matricula');
+            const selectedIndex = parseInt(selectMatricula.value);
+            
+            // Use BIND.vinculos
+            const vinculoData = BIND.vinculos[selectedIndex];
+            
+            if (vinculoData) {
+                document.getElementById('cargo').value = safeValue(vinculoData.cargo);
+                document.getElementById('vinculo').value = safeValue(vinculoData.vinculo);
+                document.getElementById('dataAdmissao').value = safeValue(vinculoData.dataAdmissao);
+            } else {
+                // Clear fields if no data
+                document.getElementById('cargo').value = '';
+                document.getElementById('vinculo').value = '';
+                document.getElementById('dataAdmissao').value = '';
+            }
+        }
     </script>
-
-
 
     <script>
         function showSection(sectionId) {
@@ -995,105 +1010,6 @@
                 details.querySelectorAll('input').forEach(input => input.required = false);
             }
         }
-
-        // Function called when matricula changes
-        function onMatriculaChange() {
-            const selectMatricula = document.getElementById('matricula');
-            const selectedIndex = selectMatricula.value;
-            const matriculaData = matriculasData[selectedIndex];
-
-            if (matriculaData) {
-                document.getElementById('cargo').value = matriculaData.cargo || '';
-                document.getElementById('vinculo').value = matriculaData.vinculo || '';
-                document.getElementById('dataAdmissao').value = matriculaData.dataAdmissao || '';
-            }
-        }
-
-
-        // Multiple Matriculas Management
-        let matriculasData = [];
-
-        // Function to initialize matriculas data
-        function initializeMatriculas(data) {
-            if (Array.isArray(data)) {
-                matriculasData = data;
-            } else {
-                matriculasData = [data];
-            }
-
-            const selectMatricula = document.getElementById('matricula');
-            selectMatricula.innerHTML = '';
-
-            matriculasData.forEach((mat, index) => {
-                const option = document.createElement('option');
-                option.value = index;
-                option.textContent = mat.matricula;
-                if (index === 0) option.selected = true;
-                selectMatricula.appendChild(option);
-            });
-
-            onMatriculaChange();
-        }
-
-        // Function called when matricula changes
-        function onMatriculaChange() {
-            const selectMatricula = document.getElementById('matricula');
-            const selectedIndex = selectMatricula.value;
-            const matriculaData = matriculasData[selectedIndex];
-
-            if (matriculaData) {
-                document.getElementById('cargo').value = matriculaData.cargo || '';
-                document.getElementById('vinculo').value = matriculaData.vinculo || '';
-                document.getElementById('dataAdmissao').value = matriculaData.dataAdmissao || '';
-            }
-        }
-
-        
-        // Multiple Matriculas Management
-        let matriculasData = [];
-
-        // Function to initialize matriculas data
-        function initializeMatriculas(data) {
-            if (Array.isArray(data)) {
-                matriculasData = data;
-            } else {
-                matriculasData = [data];
-            }
-            
-            const selectMatricula = document.getElementById('matricula');
-            selectMatricula.innerHTML = '';
-            
-            matriculasData.forEach((mat, index) => {
-                const option = document.createElement('option');
-                option.value = index;
-                option.textContent = mat.matricula;
-                if (index === 0) option.selected = true;
-                selectMatricula.appendChild(option);
-            });
-            
-            onMatriculaChange();
-        }
-
-        // Function called when matricula changes
-        function onMatriculaChange() {
-            const selectMatricula = document.getElementById('matricula');
-            const selectedIndex = parseInt(selectMatricula.value);
-            
-            // Use BIND.vinculos instead of matriculasData
-            const vinculoData = BIND.vinculos[selectedIndex];
-            
-            if (vinculoData) {
-                document.getElementById('cargo').value = safeValue(vinculoData.cargo);
-                document.getElementById('vinculo').value = safeValue(vinculoData.vinculo);
-                document.getElementById('dataAdmissao').value = safeValue(vinculoData.dataAdmissao);
-            } else {
-                // Clear fields if no data
-                document.getElementById('cargo').value = '';
-                document.getElementById('vinculo').value = '';
-                document.getElementById('dataAdmissao').value = '';
-            }
-        }
-
 
         // University Management Logic
         let uniCount = 0;
@@ -1248,52 +1164,9 @@
         }
 
         // Initialize with one university
-        // Initialize with backend data when page loads
         document.addEventListener('DOMContentLoaded', () => {
-            // Example: Replace this with actual data from your backend
-            // The data should be available as a global variable or injected via template
-            const backendData = BIND.vinculos || []; // Assuming data is in window.userData
-
-            if (backendData && backendData.length > 0) {
-                // Populate common fields from BIND.dadosComuns
-                const dc = BIND.dadosComuns || {};
-                document.getElementById('nomeCompleto').value = safeValue(dc.nomeCompleto);
-                document.getElementById('cpf').value = safeValue(dc.cpf);
-                document.getElementById('dataNascimento').value = safeValue(dc.dataNascimento);
-                document.getElementById('nacionalidade').value = safeValue(dc.nacionalidade)?.toLowerCase() || '';
-                document.getElementById('lotacao').value = safeValue(dc.lotacao);
-                document.getElementById('genero').value = safeValue(dc.genero);
-                document.getElementById('racaCor').value = safeValue(dc.racaCor);
-                document.getElementById('email').value = safeValue(dc.email);
-                document.getElementById('telefone').value = safeValue(dc.telefone);
-
-                const pcdCheckbox = document.getElementById('pcd');
-                if (pcdCheckbox) {
-                    pcdCheckbox.checked = dc.pcd === true || dc.pcd === 'true';
-                }
-
-
-                // Get first record for common fields (same for all matriculas)
-                const firstRecord = backendData;
-
-                // Populate common fields (readonly)
-                document.getElementById('nomeCompleto').value = firstRecord.nomeCompleto || '';
-                document.getElementById('cpf').value = firstRecord.cpf || '';
-                document.getElementById('dataNascimento').value = firstRecord.dataNascimento || '';
-
-                // Populate editable fields
-                document.getElementById('nacionalidade').value = firstRecord.nacionalidade?.toLowerCase() || '';
-                document.getElementById('lotacao').value = firstRecord.lotacao || '';
-                document.getElementById('genero').value = firstRecord.genero || '';
-                document.getElementById('racaCor').value = firstRecord.racaCor || '';
-                document.getElementById('email').value = firstRecord.email || '';
-                document.getElementById('telefone').value = firstRecord.telefone || '';
-
-                // Handle PCD checkbox
-                const pcdCheckbox = document.getElementById('pcd');
-                if (pcdCheckbox) {
-                    pcdCheckbox.checked = firstRecord.pcd === true || firstRecord.pcd === 'true';
-                }
+            addUniversity();
+        });
 
         // Form Validation
         (() => {
