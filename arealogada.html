@@ -1072,6 +1072,46 @@
             }
         }
 
+        
+        // Multiple Matriculas Management
+        let matriculasData = [];
+
+        // Function to initialize matriculas data
+        function initializeMatriculas(data) {
+            if (Array.isArray(data)) {
+                matriculasData = data;
+            } else {
+                matriculasData = [data];
+            }
+            
+            const selectMatricula = document.getElementById('matricula');
+            selectMatricula.innerHTML = '';
+            
+            matriculasData.forEach((mat, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = mat.matricula;
+                if (index === 0) option.selected = true;
+                selectMatricula.appendChild(option);
+            });
+            
+            onMatriculaChange();
+        }
+
+        // Function called when matricula changes
+        function onMatriculaChange() {
+            const selectMatricula = document.getElementById('matricula');
+            const selectedIndex = selectMatricula.value;
+            const matriculaData = matriculasData[selectedIndex];
+            
+            if (matriculaData) {
+                document.getElementById('cargo').value = matriculaData.cargo || '';
+                document.getElementById('vinculo').value = matriculaData.vinculo || '';
+                document.getElementById('dataAdmissao').value = matriculaData.dataAdmissao || '';
+            }
+        }
+
+
         // University Management Logic
         let uniCount = 0;
         const maxUnis = 3;
