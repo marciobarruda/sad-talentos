@@ -995,30 +995,6 @@
                 details.querySelectorAll('input').forEach(input => input.required = false);
             }
         }
-        // Multiple Matriculas Management
-        let matriculasData = [];
-
-        // Function to initialize matriculas data
-        function initializeMatriculas(data) {
-            if (Array.isArray(data)) {
-                matriculasData = data;
-            } else {
-                matriculasData = [data];
-            }
-
-            const selectMatricula = document.getElementById('matricula');
-            selectMatricula.innerHTML = '';
-
-            matriculasData.forEach((mat, index) => {
-                const option = document.createElement('option');
-                option.value = index;
-                option.textContent = mat.matricula;
-                if (index === 0) option.selected = true;
-                selectMatricula.appendChild(option);
-            });
-
-            onMatriculaChange();
-        }
 
         // Function called when matricula changes
         function onMatriculaChange() {
@@ -1101,13 +1077,20 @@
         // Function called when matricula changes
         function onMatriculaChange() {
             const selectMatricula = document.getElementById('matricula');
-            const selectedIndex = selectMatricula.value;
-            const matriculaData = matriculasData[selectedIndex];
+            const selectedIndex = parseInt(selectMatricula.value);
             
-            if (matriculaData) {
-                document.getElementById('cargo').value = matriculaData.cargo || '';
-                document.getElementById('vinculo').value = matriculaData.vinculo || '';
-                document.getElementById('dataAdmissao').value = matriculaData.dataAdmissao || '';
+            // Use BIND.vinculos instead of matriculasData
+            const vinculoData = BIND.vinculos[selectedIndex];
+            
+            if (vinculoData) {
+                document.getElementById('cargo').value = safeValue(vinculoData.cargo);
+                document.getElementById('vinculo').value = safeValue(vinculoData.vinculo);
+                document.getElementById('dataAdmissao').value = safeValue(vinculoData.dataAdmissao);
+            } else {
+                // Clear fields if no data
+                document.getElementById('cargo').value = '';
+                document.getElementById('vinculo').value = '';
+                document.getElementById('dataAdmissao').value = '';
             }
         }
 
@@ -1311,25 +1294,6 @@
                 if (pcdCheckbox) {
                     pcdCheckbox.checked = firstRecord.pcd === true || firstRecord.pcd === 'true';
                 }
-
-                // Transform data for matriculas (extract only matricula-specific fields)
-                const matriculasData = backendData.map(record => ({
-                    matricula: record.matricula,
-                    cargo: record.cargo,
-                    vinculo: record.vinculo,
-                    dataAdmissao: record.dataAdmissao
-                }));
-
-                // Initialize matriculas system
-                initializeMatriculas(matriculasData);
-            }
-
-            // Also initialize university management
-            addUniversity();
-            
-            // Initialize matricula-dependent fields
-            onMatriculaChange();
-        });
 
         // Form Validation
         (() => {
