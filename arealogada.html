@@ -272,7 +272,8 @@
                         <div class="col-md-3">
                             <label class="form-label">Matrícula</label>
                             <select class="form-select bg-light" id="matricula" onchange="onMatriculaChange()">
-                                <!-- Populado dinamicamente via JavaScript -->
+                                <option value="0" selected>{{ $json.vinculos[0].matricula }}</option>
+                                <option value="1">{{ $json.vinculos[1].matricula }}</option>
                             </select>
                         </div>
                         <div class="col-md-3">
