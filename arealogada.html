@@ -195,13 +195,11 @@
 
 <body>
 
-    <!-- Mobile Toggle -->
     <button class="btn btn-primary d-lg-none position-fixed top-0 start-0 m-3 z-3"
         onclick="document.querySelector('.sidebar').classList.toggle('show')">
         <i class="bi bi-list"></i>
     </button>
 
-    <!-- Sidebar -->
     <nav class="sidebar">
         <div class="sidebar-header">
             <h5 class="m-0 fw-bold">Talentos Públicos</h5>
@@ -227,19 +225,17 @@
         <div class="mt-auto p-3 border-top border-secondary bg-dark bg-opacity-25">
             <div class="d-flex align-items-center gap-3">
                 <div class="bg-white rounded-circle d-flex align-items-center justify-content-center text-primary fw-bold shadow-sm"
-                    style="width: 40px; height: 40px;">JS</div>
+                    style="width: 40px; height: 40px;">{{ $json.nomeCompleto.split(' ').filter(n => !['de', 'da', 'do',
+                    'dos', 'das'].includes(n.toLowerCase())).slice(0, 2).map(n => n[0]).join('').toUpperCase() }}</div>
                 <div class="small text-white">
-                    <div class="fw-bold">João da Silva</div>
-                    <div class="opacity-75">Matrícula: 123456</div>
+                    <div class="fw-bold">{{$json.nomeCompleto}}</div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="main-content">
 
-        <!-- Inscrição Section -->
         <div id="inscricao" class="content-section active">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
@@ -251,68 +247,73 @@
 
             <form id="formInscricao" class="needs-validation" novalidate>
 
-                <!-- Dados do Servidor (Readonly) -->
                 <div class="form-wrapper">
                     <h4 class="mb-4 text-secondary border-bottom pb-2">1. Dados do Servidor</h4>
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label">Nome Completo</label>
                             <input type="text" class="form-control bg-light" value="{{$json.nomeCompleto}}" readonly
-                                id="nomeCompleto">
+                                id="nomeCompleto" name="nomeCompleto">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">CPF</label>
-                            <input type="text" class="form-control bg-light" value="{{$json.cpf}}" readonly id="cpf">
+                            <input type="text" class="form-control bg-light" value="{{$json.cpf}}" readonly id="cpf"
+                                name="cpf">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Data de Nascimento</label>
                             <input type="date" class="form-control bg-light" value="{{$json.dataNascimento}}" readonly
-                                id="dataNascimento">
+                                id="dataNascimento" name="dataNascimento">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Matrícula</label>
-                            <select class="form-select bg-light" id="matricula" onchange="onMatriculaChange()">
-                                <option value="0" selected>{{$json.vinculos[0].matricula}}</option>
-                                <option value="1">{{$json.vinculos[1].matricula}}</option>
+                            <select class="form-select bg-light" id="matricula" name="matricula">
+                                <option value="">Selecione...</option>
+                                <option value="0">{{ $json.vinculos[0].matricula }}</option>
+
+                                {{ $json.vinculos[1]?.matricula ? '<option value="1">' + $json.vinculos[1].matricula + '
+                                </option>' : '' }}
                             </select>
                         </div>
+
                         <div class="col-md-3">
                             <label class="form-label">Cargo</label>
-                            <input type="text" class="form-control bg-light" readonly id="cargo">
+                            <input type="text" class="form-control bg-light" value="" readonly id="cargo" name="cargo">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Vínculo</label>
-                            <input type="text" class="form-control bg-light" readonly id="vinculo">
+                            <input type="text" class="form-control bg-light" value="" readonly id="vinculo"
+                                name="vinculo">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Data de Admissão</label>
-                            <input type="date" class="form-control bg-light" readonly id="dataAdmissao">
+                            <input type="text" class="form-control bg-light" value="" readonly id="dataAdmissao"
+                                name="dataAdmissao">
                         </div>
                     </div>
                 </div>
 
-                <!-- Dados Complementares -->
                 <div class="form-wrapper">
                     <h4 class="mb-4 text-secondary border-bottom pb-2">2. Dados Complementares</h4>
                     <div class="row g-3">
                         <div class="col-md-4">
                             <label class="form-label required">Nacionalidade</label>
-                            <select class="form-select" required id="nacionalidade">
+                            <select class="form-select" required id="nacionalidade" name="nacionalidade">
                                 <option value="">Selecione...</option>
                                 <option value="brasileira">Brasileira</option>
                                 <option value="afegane">Afegane</option>
                                 <option value="sul-africana">Sul-Africana</option>
                                 <option value="albanesa">Albanesa</option>
-                                <option value="alema">AlemÃ£</option>
+                                <option value="alema">Alemã</option>
                                 <option value="andorrana">Andorrana</option>
                                 <option value="angolana">Angolana</option>
                                 <option value="antiguana">Antiguana</option>
                                 <option value="saudita">Saudita</option>
                                 <option value="argelina">Argelina</option>
                                 <option value="argentina">Argentina</option>
-                                <option value="armenia">ArmÃªnia</option>
+                                <option value="armenia">Armênia</option>
                                 <option value="australiana">Australiana</option>
-                                <option value="austriaca">AustrÃ­aca</option>
+                                <option value="austriaca">Austríaca</option>
                                 <option value="azerbaijana">Azerbaijana</option>
                                 <option value="bahamense">Bahamense</option>
                                 <option value="bangladeshiana">Bangladeshiana</option>
@@ -323,10 +324,10 @@
                                 <option value="beninense">Beninense</option>
                                 <option value="bielorrussa">Bielorrussa</option>
                                 <option value="boliviana">Boliviana</option>
-                                <option value="bosniaca">BÃ³sniaca</option>
+                                <option value="bosniaca">Bósniaca</option>
                                 <option value="botsuanesa">Botsuanesa</option>
                                 <option value="bruneiana">Bruneiana</option>
-                                <option value="bulgara">BÃºlgara</option>
+                                <option value="bulgara">Búlgara</option>
                                 <option value="burquinense">Burquinense</option>
                                 <option value="burundesa">Burundesa</option>
                                 <option value="butanesa">Butanesa</option>
@@ -352,7 +353,7 @@
                                 <option value="dinamarquesa">Dinamarquesa</option>
                                 <option value="djiboutiana">Djiboutiana</option>
                                 <option value="dominicana">Dominicana</option>
-                                <option value="egipcia">EgÃ­pcia</option>
+                                <option value="egipcia">Egípcia</option>
                                 <option value="salvadorenha">Salvadorenha</option>
                                 <option value="emiradense">Emiradense</option>
                                 <option value="equatoriana">Equatoriana</option>
@@ -361,8 +362,8 @@
                                 <option value="eslovena">Eslovena</option>
                                 <option value="espanhola">Espanhola</option>
                                 <option value="estadunidense">Estadunidense</option>
-                                <option value="estonia">EstÃ´nia</option>
-                                <option value="etiope">EtÃ­ope</option>
+                                <option value="estonia">Estônia</option>
+                                <option value="etiope">Etíope</option>
                                 <option value="fijiana">Fijiana</option>
                                 <option value="filipina">Filipina</option>
                                 <option value="finlandesa">Finlandesa</option>
@@ -377,13 +378,13 @@
                                 <option value="guianense">Guianense</option>
                                 <option value="guineense">Guineense</option>
                                 <option value="equatoguineana">Equatoguineana</option>
-                                <option value="guine-bissauense">GuinÃ©-Bissauense</option>
+                                <option value="guine-bissauense">Guiné-Bissauense</option>
                                 <option value="haitiana">Haitiana</option>
                                 <option value="hondurenha">Hondurenha</option>
-                                <option value="hungara">HÃºngara</option>
+                                <option value="hungara">Húngara</option>
                                 <option value="iemenita">Iemenita</option>
                                 <option value="indiana">Indiana</option>
-                                <option value="indonesia">IndonÃ©sia</option>
+                                <option value="indonesia">Indonésia</option>
                                 <option value="iraniana">Iraniana</option>
                                 <option value="iraquiana">Iraquiana</option>
                                 <option value="irlandesa">Irlandesa</option>
@@ -398,14 +399,14 @@
                                 <option value="kuwaitiana">Kuwaitiana</option>
                                 <option value="laosiana">Laosiana</option>
                                 <option value="lesota">Lesota</option>
-                                <option value="letÃ£">LetÃ£</option>
+                                <option value="leta">Letã</option>
                                 <option value="libanesa">Libanesa</option>
                                 <option value="liberiana">Liberiana</option>
-                                <option value="libia">LÃ­bia</option>
+                                <option value="libia">Líbia</option>
                                 <option value="liechtensteiniana">Liechtensteiniana</option>
                                 <option value="lituana">Lituana</option>
                                 <option value="luxemburguesa">Luxemburguesa</option>
-                                <option value="macedÃ´nia">MacedÃ´nia</option>
+                                <option value="macedonia">Macedônia</option>
                                 <option value="madagascarense">Madagascarense</option>
                                 <option value="malaia">Malaia</option>
                                 <option value="malauiana">Malauiana</option>
@@ -417,8 +418,8 @@
                                 <option value="mauriciana">Mauriciana</option>
                                 <option value="mauritana">Mauritana</option>
                                 <option value="mexicana">Mexicana</option>
-                                <option value="micronesia">MicronÃ©sia</option>
-                                <option value="moÃ§ambicana">MoÃ§ambicana</option>
+                                <option value="micronesia">Micronésia</option>
+                                <option value="mocambicana">Moçambicana</option>
                                 <option value="moldava">Moldava</option>
                                 <option value="monegasca">Monegasca</option>
                                 <option value="mongol">Mongol</option>
@@ -452,22 +453,22 @@
                                 <option value="salomonense">Salomonense</option>
                                 <option value="samoana">Samoana</option>
                                 <option value="santa-lucense">Santa-Lucense</option>
-                                <option value="sao-cristovense">SÃ£o-Cristovense</option>
-                                <option value="sao-marinense">SÃ£o-Marinense</option>
-                                <option value="sao-tomense">SÃ£o-Tomense</option>
+                                <option value="sao-cristovense">São-Cristovense</option>
+                                <option value="sao-marinense">São-Marinense</option>
+                                <option value="sao-tomense">São-Tomense</option>
                                 <option value="senegalesa">Senegalesa</option>
                                 <option value="serra-leonesa">Serra-Leonesa</option>
-                                <option value="servia">SÃ©rvia</option>
+                                <option value="servia">Sérvia</option>
                                 <option value="seichelense">Seichelense</option>
                                 <option value="singapuriana">Singapuriana</option>
-                                <option value="siria">SÃ­ria</option>
+                                <option value="siria">Síria</option>
                                 <option value="somali">Somali</option>
                                 <option value="cingalesa">Cingalesa</option>
                                 <option value="suazi">Suazi</option>
                                 <option value="sudanesa">Sudanesa</option>
                                 <option value="sul-sudanesa">Sul-Sudanesa</option>
                                 <option value="sueca">Sueca</option>
-                                <option value="suiÃ§a">SuÃ­Ã§a</option>
+                                <option value="suica">Suíça</option>
                                 <option value="surinamesa">Surinamesa</option>
                                 <option value="tailandesa">Tailandesa</option>
                                 <option value="tanzaniana">Tanzaniana</option>
@@ -494,58 +495,56 @@
                         </div>
                         <div class="col-md-4">
                             <label class="form-label required">Lotação (Órgão/Secretaria)</label>
-                            <select class="form-select" required id="lotacao">
+                            <select class="form-select" required id="lotacao" name="lotacao">
                                 <option value="">Selecione...</option>
-                                <option value="EMPREL">EMPREL - Empresa Municipal de InformÃ¡tica</option>
-                                <option value="SEPLAGTD">SEPLAGTD - Secretaria de Planejamento, GestÃ£o e
-                                    TransformaÃ§Ã£o Digital</option>
-                                <option value="SDECTI">SDECTI - Secretaria de Desenvolvimento EconÃ´mico, CiÃªncia,
-                                    Tecnologia e InovaÃ§Ã£o</option>
+                                <option value="EMPREL">EMPREL - Empresa Municipal de Informática</option>
+                                <option value="SEPLAGTD">SEPLAGTD - Secretaria de Planejamento, Gestão e Transformação
+                                    Digital</option>
+                                <option value="SDECTI">SDECTI - Secretaria de Desenvolvimento Econômico, Ciência,
+                                    Tecnologia e Inovação</option>
                                 <option value="AESP">AESP - Gabinete de Assessoria Especial</option>
-                                <option value="PGM">PGM - Procuradoria-Geral do MunicÃ­pio</option>
+                                <option value="PGM">PGM - Procuradoria-Geral do Município</option>
                                 <option value="GVP">GVP - Gabinete Vice-Prefeitura</option>
                                 <option value="GPREF">GPREF - Gabinete Prefeito</option>
                                 <option value="GABPE">GABPE - Gabinete de Projetos Especiais</option>
-                                <option value="GABCENTRO">GABCENTRO - Gabineto do Centro do Recife</option>
-                                <option value="GABCOM">GABCOM - Gabinete de ComunicaÃ§Ã£o</option>
-                                <option value="CGM">CGM - Controladoria-Geral do MunicÃ­pio</option>
-                                <option value="AMPASS">AMPASS - Autarquia Municipal de PrevidÃªncia e AssistÃªncia Ã 
-                                    SaÃºde dos Servidores</option>
-                                <option value="CONVIVA">CONVIVA - CONVIVA Mercados e Feiras- Autarquia Municipal
+                                <option value="GABCENTRO">GABCENTRO - Gabinete do Centro do Recife</option>
+                                <option value="GABCOM">GABCOM - Gabinete de Comunicação</option>
+                                <option value="CGM">CGM - Controladoria-Geral do Município</option>
+                                <option value="AMPASS">AMPASS - Autarquia Municipal de Previdência e Assistência à Saúde
+                                    dos Servidores</option>
+                                <option value="CONVIVA">CONVIVA - CONVIVA Mercados e Feiras - Autarquia Municipal
                                 </option>
-                                <option value="CTTU">CTTU - Autarquia de TrÃ¢nsito e Transporte Urbano do Recife
+                                <option value="CTTU">CTTU - Autarquia de Trânsito e Transporte Urbano do Recife</option>
+                                <option value="EMLURB">EMLURB - Autarquia de Manutenção e Limpeza Urbana do Recife
                                 </option>
-                                <option value="EMLURB">EMLURB - Autarquia de ManutenÃ§Ã£o e Limpeza Urbana do Recife
-                                </option>
-                                <option value="URB">URB - Autarquia de UrbanizaÃ§Ã£o do Recife</option>
-                                <option value="FCCR">FCCR - FundaÃ§Ã£o de Cultura Cidade do Recife</option>
-                                <option value="SEGOV">SEGOV - Secretaria de Governo e ParticipaÃ§Ã£o Social</option>
-                                <option value="SEFIN">SEFIN - Secretaria de FinanÃ§as</option>
+                                <option value="URB">URB - Autarquia de Urbanização do Recife</option>
+                                <option value="FCCR">FCCR - Fundação de Cultura Cidade do Recife</option>
+                                <option value="SEGOV">SEGOV - Secretaria de Governo e Participação Social</option>
+                                <option value="SEFIN">SEFIN - Secretaria de Finanças</option>
                                 <option value="SEINFRA">SEINFRA - Secretaria de Infraestrutura</option>
                                 <option value="SMAS">SMAS - Secretaria de Meio Ambiente e Sustentabilidade</option>
-                                <option value="SEPUL">SEPUL - Secretaria de PolÃ­tica Urbana e Licenciamento</option>
+                                <option value="SEPUL">SEPUL - Secretaria de Política Urbana e Licenciamento</option>
                                 <option value="SESAN">SESAN - Secretaria de Saneamento</option>
-                                <option value="SEHAB">SEHAB - Secretaria de HabitaÃ§Ã£o</option>
-                                <option value="SESEC">SESEC - Secretaria de SeguranÃ§a CidadÃ£</option>
+                                <option value="SEHAB">SEHAB - Secretaria de Habitação</option>
+                                <option value="SESEC">SESEC - Secretaria de Segurança Cidadã</option>
                                 <option value="SEMUL">SEMUL - Secretaria da Mulher</option>
                                 <option value="SDSDHJPD">SDSDHJPD - Secretaria de Desenvolvimento Social, Direitos
-                                    Humanos, Juventude e PolÃ­ticas sobre Drogas</option>
+                                    Humanos, Juventude e Políticas sobre Drogas</option>
                                 <option value="SECULT">SECULT - Secretaria de Cultura</option>
                                 <option value="SESP">SESP - Secretaria de Esportes</option>
                                 <option value="SETURL">SETURL - Secretaria de Turismo e Lazer</option>
-                                <option value="STQP">STQP - Secretaria de Trabalho e QualificaÃ§Ã£o Profissional
-                                </option>
-                                <option value="SEDUC">SEDUC - Secretaria de EducaÃ§Ã£o</option>
-                                <option value="SESAU">SESAU - Secretaria de SaÃºde</option>
+                                <option value="STQP">STQP - Secretaria de Trabalho e Qualificação Profissional</option>
+                                <option value="SEDUC">SEDUC - Secretaria de Educação</option>
+                                <option value="SESAU">SESAU - Secretaria de Saúde</option>
                                 <option value="GIMP">GIMP - Gabinete de Imprensa</option>
                                 <option value="PROMORAR">PROMORAR - Gabinete de Gerenciamento do Programa de
-                                    RequalificaÃ§Ã£o e ResiliÃªncia Urbana em Ãreas de Vulnerabilidade Socioambiental
+                                    Requalificação e Resiliência Urbana em Áreas de Vulnerabilidade Socioambiental
                                 </option>
                             </select>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label required">Pessoa com Deficiência (PcD)</label>
-                            <select class="form-select" required id="pcd">
+                            <select class="form-select" required id="pcd" name="pcd">
                                 <option value="">Selecione...</option>
                                 <option value="sim">Sim</option>
                                 <option value="nao">Não</option>
@@ -553,7 +552,7 @@
                         </div>
                         <div class="col-md-4">
                             <label class="form-label required">Gênero</label>
-                            <select class="form-select" required id="genero">
+                            <select class="form-select" required id="genero" name="genero">
                                 <option value="">Selecione...</option>
                                 <option value="feminino">Feminino</option>
                                 <option value="masculino">Masculino</option>
@@ -562,7 +561,7 @@
                         </div>
                         <div class="col-md-4">
                             <label class="form-label required">Raça/Cor</label>
-                            <select class="form-select" required id="racaCor">
+                            <select class="form-select" required id="racaCor" name="racaCor">
                                 <option value="">Selecione...</option>
                                 <option value="branca">Branca</option>
                                 <option value="preta">Preta</option>
@@ -573,15 +572,15 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label required">E-mail</label>
-                            <input type="email" class="form-control" required id="email">
+                            <input type="email" class="form-control" required id="email" name="email">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label required">Telefone</label>
-                            <input type="tel" class="form-control" required id="telefone">
+                            <input type="tel" class="form-control" required id="telefone" name="telefone">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label required">Faixa de Remuneração</label>
-                            <select class="form-select" required id="faixaRemuneracao">
+                            <select class="form-select" required id="faixaRemuneracao" name="faixaRemuneracao">
                                 <option value="">Selecione...</option>
                                 <option value="ate_8999">Até R$8.999,99</option>
                                 <option value="9000_12999">De R$9.000,00 a R$12.999,99</option>
@@ -592,7 +591,8 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label required">Possui mais de um cargo público efetivo?</label>
-                            <select class="form-select" id="outroCargo" onchange="toggleOutroCargo()" required>
+                            <select class="form-select" id="outroCargo" name="outroCargo" onchange="toggleOutroCargo()"
+                                required>
                                 <option value="nao">Não</option>
                                 <option value="sim">Sim</option>
                             </select>
@@ -603,11 +603,13 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label required">Matrícula (2º Cargo)</label>
-                                        <input type="text" class="form-control" id="matriculaSegundoCargo">
+                                        <input type="text" class="form-control" id="matriculaSegundoCargo"
+                                            name="matriculaSegundoCargo">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label required">Unidade de Lotação (2º Cargo)</label>
-                                        <input type="text" class="form-control" id="lotacaoSegundoCargo">
+                                        <input type="text" class="form-control" id="lotacaoSegundoCargo"
+                                            name="lotacaoSegundoCargo">
                                     </div>
                                 </div>
                             </div>
@@ -615,52 +617,50 @@
                     </div>
                 </div>
 
-                <!-- Requisitos Básicos -->
                 <div class="form-wrapper">
                     <h4 class="mb-4 text-secondary border-bottom pb-2">3. Requisitos Básicos</h4>
                     <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" required id="req1">
+                        <input class="form-check-input" type="checkbox" required id="req1" name="req1">
                         <label class="form-check-label" for="req1">Sou servidor público efetivo e estável do Poder
                             Executivo do Município de Recife</label>
                     </div>
                     <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" required id="req2">
+                        <input class="form-check-input" type="checkbox" required id="req2" name="req2">
                         <label class="form-check-label" for="req2">Possuo graduação completa até a data de publicação do
                             Edital</label>
                     </div>
                     <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" required id="req3">
+                        <input class="form-check-input" type="checkbox" required id="req3" name="req3">
                         <label class="form-check-label" for="req3">Possuo vínculo ativo com órgão ou entidade da
                             administração pública direta ou indireta da Prefeitura da Cidade do Recife</label>
                     </div>
                     <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" required id="req4">
+                        <input class="form-check-input" type="checkbox" required id="req4" name="req4">
                         <label class="form-check-label" for="req4">Não estou cedido, requisitado ou em exercício
                             provisório em outros órgãos</label>
                     </div>
                     <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" required id="req5">
+                        <input class="form-check-input" type="checkbox" required id="req5" name="req5">
                         <label class="form-check-label" for="req5">Não possuo requisitos para aposentadoria compulsória
                             antes do término do período obrigatório de permanência</label>
                     </div>
                     <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" required id="req6">
+                        <input class="form-check-input" type="checkbox" required id="req6" name="req6">
                         <label class="form-check-label" for="req6">Iniciei o processo de candidatura ou obtive carta de
                             aceite em programas de mestrado pleno presencial</label>
                     </div>
                     <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" required id="req7">
+                        <input class="form-check-input" type="checkbox" required id="req7" name="req7">
                         <label class="form-check-label" for="req7">Mantenho compromisso de retorno e aplicação do
                             conhecimento adquirido</label>
                     </div>
                     <div class="form-check mb-2">
-                        <input class="form-check-input" type="checkbox" required id="req8">
+                        <input class="form-check-input" type="checkbox" required id="req8" name="req8">
                         <label class="form-check-label" for="req8">Não tenho vínculo de parentesco em até terceiro grau
                             com membros da comissão ou gestores</label>
                     </div>
                 </div>
 
-                <!-- Documentação -->
                 <div class="form-wrapper">
                     <h4 class="mb-4 text-secondary border-bottom pb-2">4. Documentação Comprobatória</h4>
                     <div class="alert alert-info mb-4">
@@ -672,14 +672,16 @@
                         <div class="col-md-6">
                             <div class="file-input-wrapper">
                                 <label class="form-label required">1. Currículo atualizado (Anexo I)</label>
-                                <input type="file" class="form-control" accept=".pdf" required id="fileCurriculo">
+                                <input type="file" class="form-control" accept=".pdf" required id="fileCurriculo"
+                                    name="fileCurriculo">
                                 <div class="form-text">Formato PDF.</div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="file-input-wrapper">
                                 <label class="form-label required">2. Comprovante de graduação</label>
-                                <input type="file" class="form-control" accept=".pdf" required id="fileGraduacao">
+                                <input type="file" class="form-control" accept=".pdf" required id="fileGraduacao"
+                                    name="fileGraduacao">
                                 <div class="form-text">Diploma ou declaração oficial.</div>
                             </div>
                         </div>
@@ -687,7 +689,7 @@
                             <div class="file-input-wrapper">
                                 <label class="form-label required">3. Carta de aceite/admissão</label>
                                 <input type="file" class="form-control" accept=".pdf" multiple required
-                                    id="fileCartaAceite">
+                                    id="fileCartaAceite" name="fileCartaAceite">
                                 <div class="form-text">Ou comprovante de inscrição ("application").</div>
                             </div>
                         </div>
@@ -695,7 +697,7 @@
                             <div class="file-input-wrapper">
                                 <label class="form-label required">4. Carta de Motivação (Anexo II)</label>
                                 <input type="file" class="form-control" accept=".pdf" multiple required
-                                    id="fileCartaMotivacao">
+                                    id="fileCartaMotivacao" name="fileCartaMotivacao">
                                 <div class="form-text">Conforme modelo.</div>
                             </div>
                         </div>
@@ -703,28 +705,29 @@
                             <div class="file-input-wrapper">
                                 <label class="form-label required">5. Plano de Aplicação (Anexo III)</label>
                                 <input type="file" class="form-control" accept=".pdf" multiple required
-                                    id="filePlanoAplicacao">
+                                    id="filePlanoAplicacao" name="filePlanoAplicacao">
                                 <div class="form-text">Conforme modelo.</div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="file-input-wrapper">
                                 <label class="form-label">6. Escolha definitiva da Universidade</label>
-                                <input type="file" class="form-control" accept=".pdf" id="fileEscolhaUniversidade">
+                                <input type="file" class="form-control" accept=".pdf" id="fileEscolhaUniversidade"
+                                    name="fileEscolhaUniversidade">
                                 <div class="form-text">Opcional nesta etapa.</div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="file-input-wrapper">
                                 <label class="form-label">7. Carta de aceite (versão definitiva)</label>
-                                <input type="file" class="form-control" accept=".pdf" id="fileCartaAceiteDefinitiva">
+                                <input type="file" class="form-control" accept=".pdf" id="fileCartaAceiteDefinitiva"
+                                    name="fileCartaAceiteDefinitiva">
                                 <div class="form-text">Opcional nesta etapa.</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Dados Acadêmicos -->
                 <div class="form-wrapper">
                     <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
                         <h4 class="text-secondary m-0">5. Dados Acadêmicos e de Pesquisa</h4>
@@ -735,7 +738,6 @@
                     </div>
 
                     <div id="universitiesContainer">
-                        <!-- Dynamic Content -->
                     </div>
 
                     <div id="maxUniAlert" class="alert alert-warning mt-3 d-none">
@@ -743,7 +745,6 @@
                     </div>
                 </div>
 
-                <!-- Declaração Final -->
                 <div class="form-wrapper">
                     <div class="p-3 bg-light rounded border">
                         <div class="form-check">
@@ -767,7 +768,6 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end gap-3 mt-4">
-                        <button type="button" class="btn btn-outline-secondary px-4 py-2">Salvar Rascunho</button>
                         <button type="submit" class="btn btn-primary btn-lg px-5 py-2 shadow">Enviar Inscrição</button>
                     </div>
                 </div>
@@ -775,7 +775,6 @@
             </form>
         </div>
 
-        <!-- Recursos Section -->
         <div id="recursos" class="content-section">
             <h2 class="h3 fw-bold text-primary mb-4">Interposição de Recursos</h2>
             <div class="form-wrapper text-center py-5">
@@ -788,7 +787,6 @@
             </div>
         </div>
 
-        <!-- Documentos Complementares Section -->
         <div id="documentos" class="content-section">
             <h2 class="h3 fw-bold text-primary mb-4">Documentos Complementares</h2>
             <div class="form-wrapper">
@@ -817,7 +815,6 @@
             </div>
         </div>
 
-        <!-- Publicações Section -->
         <div id="publicacoes" class="content-section">
             <h2 class="h3 fw-bold text-primary mb-4">Publicações</h2>
             <div class="form-wrapper p-0 overflow-hidden">
@@ -859,7 +856,6 @@
             </div>
         </div>
 
-        <!-- Acompanhamento Section -->
         <div id="acompanhamento" class="content-section">
             <h2 class="h3 fw-bold text-primary mb-4">Acompanhamento</h2>
             <div class="row g-4">
@@ -923,76 +919,12 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Dados do Backend -->
-    <script>
-        // Objeto BIND com template variables do backend
-        const BIND = {
-            dadosComuns: {
-                cpf: `{{$json.cpf}}`,
-                nomeCompleto: `{{$json.nomeCompleto}}`,
-                dataNascimento: `{{$json.dataNascimento}}`,
-                nacionalidade: `{{$json.nacionalidade}}`,
-                lotacao: `{{$json.lotacao}}`,
-                pcd: {{ $json.pcd }},
-        genero: `{{$json.genero}}`,
-            racaCor: `{{$json.racaCor}}`,
-                email: `{{$json.email}}`,
-                    telefone: `{{$json.telefone}}`
-            },
-        vinculos: [
-            {
-                matricula: `{{$json.vinculos[0].matricula}}`,
-                cargo: `{{$json.vinculos[0].cargo}}`,
-                vinculo: `{{$json.vinculos[0].vinculo}}`,
-                dataAdmissao: `{{$json.vinculos[0].dataAdmissao}}`
-            },
-            {
-                matricula: `{{$json.vinculos[1].matricula}}`,
-                cargo: `{{$json.vinculos[1].cargo}}`,
-                vinculo: `{{$json.vinculos[1].vinculo}}`,
-                dataAdmissao: `{{$json.vinculos[1].dataAdmissao}}`
-            }
-        ]
-        };
-
-        // Função auxiliar para valores seguros
-        function safeValue(v) {
-            return v && v !== 'undefined' && v !== 'null' ? v : '';
-        }
-
-        // Function called when matricula changes
-        function onMatriculaChange() {
-            const selectMatricula = document.getElementById('matricula');
-            const selectedIndex = parseInt(selectMatricula.value);
-
-            // Use BIND.vinculos
-            const vinculoData = BIND.vinculos[selectedIndex];
-
-            if (vinculoData) {
-                document.getElementById('cargo').value = safeValue(vinculoData.cargo);
-                document.getElementById('vinculo').value = safeValue(vinculoData.vinculo);
-                document.getElementById('dataAdmissao').value = safeValue(vinculoData.dataAdmissao);
-            } else {
-                // Clear fields if no data
-                document.getElementById('cargo').value = '';
-                document.getElementById('vinculo').value = '';
-                document.getElementById('dataAdmissao').value = '';
-            }
-        }
-    </script>
-
     <script>
         function showSection(sectionId) {
-            // Hide all sections
             document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
-            // Show selected section
             document.getElementById(sectionId).classList.add('active');
-
-            // Update sidebar active state
             document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-
-            // On mobile, close sidebar after selection
+            if (event) event.currentTarget.classList.add('active');
             if (window.innerWidth < 992) {
                 document.querySelector('.sidebar').classList.remove('show');
             }
@@ -1003,91 +935,22 @@
             const details = document.getElementById('divOutroCargoDetalhes');
             if (select.value === 'sim') {
                 details.classList.remove('d-none');
-                // Add required attribute to inputs inside
                 details.querySelectorAll('input').forEach(input => input.required = true);
             } else {
                 details.classList.add('d-none');
-                // Remove required attribute
                 details.querySelectorAll('input').forEach(input => input.required = false);
             }
         }
 
-        // University Management Logic
         let uniCount = 0;
         const maxUnis = 3;
-
-        const eixosData = [
-            {
-                id: '01',
-                title: 'SAÚDE PÚBLICA E SISTEMAS DE SAÚDE',
-                subtemas: [
-                    { id: '1.1', text: 'Redes de atenção à saúde' },
-                    { id: '1.2', text: 'Vigilância em saúde' },
-                    { id: '1.3', text: 'Determinantes sociais de saúde' }
-                ]
-            },
-            {
-                id: '02',
-                title: 'MOBILIDADE URBANA',
-                subtemas: [
-                    { id: '2.1', text: 'Planejamento da mobilidade' },
-                    { id: '2.2', text: 'Gestão de dados de tráfego' },
-                    { id: '2.3', text: 'Indicadores de mobilidade' }
-                ]
-            },
-            {
-                id: '03',
-                title: 'POLÍTICAS PÚBLICAS E GESTÃO GOVERNAMENTAL',
-                subtemas: [
-                    { id: '3.1', text: 'Gestão Orçamentária' },
-                    { id: '3.2', text: 'Políticas Públicas Locais: implementação e avaliação' },
-                    { id: '3.3', text: 'Planejamento Estratégico e Governança' }
-                ]
-            },
-            {
-                id: '04',
-                title: 'TECNOLOGIA E INOVAÇÃO',
-                subtemas: [
-                    { id: '4.1', text: 'Inteligência Artificial (IA)' },
-                    { id: '4.2', text: 'Análise de dados (Data Analytics)' },
-                    { id: '4.3', text: 'Experiência do cidadão (UX)' }
-                ]
-            },
-            {
-                id: '05',
-                title: 'SEGURANÇA E ORDEM PÚBLICA',
-                subtemas: [
-                    { id: '5.1', text: 'Prevenção à violência' },
-                    { id: '5.2', text: 'Tecnologia aplicada à segurança' },
-                    { id: '5.3', text: 'Gestão inteligente da defesa civil' }
-                ]
-            },
-            {
-                id: '06',
-                title: 'GESTÃO AMBIENTAL E URBANA',
-                subtemas: [
-                    { id: '6.1', text: 'Resiliência climática' },
-                    { id: '6.2', text: 'Preservação ambiental em áreas urbanas' },
-                    { id: '6.3', text: 'Sustentabilidade' }
-                ]
-            },
-            {
-                id: '07',
-                title: 'EDUCAÇÃO PÚBLICA',
-                subtemas: [
-                    { id: '7.1', text: 'Gestão da educação básica' },
-                    { id: '7.2', text: 'Políticas educacionais' }
-                ]
-            }
-        ];
+        const eixosData = [{ id: '01', title: 'SAÚDE PÚBLICA E SISTEMAS DE SAÚDE', subtemas: [{ id: '1.1', text: 'Redes de atenção à saúde' }, { id: '1.2', text: 'Vigilância em saúde' }, { id: '1.3', text: 'Determinantes sociais de saúde' }] }, { id: '02', title: 'MOBILIDADE URBANA', subtemas: [{ id: '2.1', text: 'Planejamento da mobilidade' }, { id: '2.2', text: 'Gestão de dados de tráfego' }, { id: '2.3', text: 'Indicadores de mobilidade' }] }, { id: '03', title: 'POLÍTICAS PÚBLICAS E GESTÃO GOVERNAMENTAL', subtemas: [{ id: '3.1', text: 'Gestão Orçamentária' }, { id: '3.2', text: 'Políticas Públicas Locais: implementação e avaliação' }, { id: '3.3', text: 'Planejamento Estratégico e Governança' }] }, { id: '04', title: 'TECNOLOGIA E INOVAÇÃO', subtemas: [{ id: '4.1', text: 'Inteligência Artificial (IA)' }, { id: '4.2', text: 'Análise de dados (Data Analytics)' }, { id: '4.3', text: 'Experiência do cidadão (UX)' }] }, { id: '05', title: 'SEGURANÇA E ORDEM PÚBLICA', subtemas: [{ id: '5.1', text: 'Prevenção à violência' }, { id: '5.2', text: 'Tecnologia aplicada à segurança' }, { id: '5.3', text: 'Gestão inteligente da defesa civil' }] }, { id: '06', title: 'GESTÃO AMBIENTAL E URBANA', subtemas: [{ id: '6.1', text: 'Resiliência climática' }, { id: '6.2', text: 'Preservação ambiental em áreas urbanas' }, { id: '6.3', text: 'Sustentabilidade' }] }, { id: '07', title: 'EDUCAÇÃO PÚBLICA', subtemas: [{ id: '7.1', text: 'Gestão da educação básica' }, { id: '7.2', text: 'Políticas educacionais' }] }];
 
         function addUniversity() {
             if (uniCount >= maxUnis) return;
-
             uniCount++;
             const container = document.getElementById('universitiesContainer');
             const uniId = `uni_${Date.now()}`;
-
             const uniHtml = `
                 <div class="card mb-4 border-primary" id="${uniId}">
                     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
@@ -1096,51 +959,22 @@
                     </div>
                     <div class="card-body bg-light">
                         <div class="row g-3 mb-4">
-                            <div class="col-md-6">
-                                <label class="form-label required">Nome da Universidade</label>
-                                <input type="text" class="form-control" required name="uni_name_${uniId}">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label required">País</label>
-                                <input type="text" class="form-control" required name="uni_country_${uniId}">
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label required">Curso Pretendido</label>
-                                <input type="text" class="form-control" required name="uni_course_${uniId}">
-                            </div>
+                            <div class="col-md-6"><label class="form-label required">Nome da Universidade</label><input type="text" class="form-control" required name="uni_name_${uniId}"></div>
+                            <div class="col-md-6"><label class="form-label required">País</label><input type="text" class="form-control" required name="uni_country_${uniId}"></div>
+                            <div class="col-12"><label class="form-label required">Curso Pretendido</label><input type="text" class="form-control" required name="uni_course_${uniId}"></div>
                         </div>
-                        
                         <label class="form-label required mb-2">Selecione o Eixo e Subtema de Interesse:</label>
                         <div class="accordion" id="accordion_${uniId}">
                             ${eixosData.map(eixo => `
                                 <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_${uniId}_${eixo.id}">
-                                            <span class="fw-bold me-2 text-primary">${eixo.id}</span> ${eixo.title}
-                                        </button>
-                                    </h2>
+                                    <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_${uniId}_${eixo.id}"><span class="fw-bold me-2 text-primary">${eixo.id}</span> ${eixo.title}</button></h2>
                                     <div id="collapse_${uniId}_${eixo.id}" class="accordion-collapse collapse" data-bs-parent="#accordion_${uniId}">
-                                        <div class="accordion-body">
-                                            <div class="list-group">
-                                                ${eixo.subtemas.map(sub => `
-                                                    <label class="list-group-item list-group-item-action d-flex gap-3">
-                                                        <input class="form-check-input flex-shrink-0" type="radio" name="subtema_${uniId}" value="${eixo.id}|${sub.id}" required>
-                                                        <span>
-                                                            <strong class="d-block text-secondary">Subtema ${sub.id}</strong>
-                                                            ${sub.text}
-                                                        </span>
-                                                    </label>
-                                                `).join('')}
-                                            </div>
-                                        </div>
+                                        <div class="accordion-body"><div class="list-group">${eixo.subtemas.map(sub => `<label class="list-group-item list-group-item-action d-flex gap-3"><input class="form-check-input flex-shrink-0" type="radio" name="subtema_${uniId}" value="${eixo.id}|${sub.id}" required><span><strong class="d-block text-secondary">Subtema ${sub.id}</strong>${sub.text}</span></label>`).join('')}</div></div>
                                     </div>
-                                </div>
-                            `).join('')}
+                                </div>`).join('')}
                         </div>
                     </div>
-                </div>
-            `;
-
+                </div>`;
             container.insertAdjacentHTML('beforeend', uniHtml);
             updateButtons();
         }
@@ -1154,59 +988,85 @@
         function updateButtons() {
             const btn = document.getElementById('btnAddUni');
             const alert = document.getElementById('maxUniAlert');
-
             if (uniCount >= maxUnis) {
                 btn.disabled = true;
                 alert.classList.remove('d-none');
             } else {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
+                btn.disabled = false;
+                alert.classList.add('d-none');
+            }
+        }
 
-                        // Find first invalid element and scroll to it
-                        const firstInvalid = form.querySelector(':invalid');
-                        if (firstInvalid) {
-                            firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }
+        document.addEventListener('DOMContentLoaded', () => { addUniversity(); });
+
+        (() => {
+            'use strict'
+            const form = document.getElementById('formInscricao');
+            form.addEventListener('submit', async event => {
+                event.preventDefault();
+
+                if (!form.checkValidity()) {
+                    event.stopPropagation();
+                    const firstInvalid = form.querySelector(':invalid');
+                    if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    form.classList.add('was-validated');
+                    return;
+                }
+
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
+
+                try {
+                    const formData = new FormData(form);
+                    // Remove o checkbox de declaração da submissão conforme solicitado
+                    formData.delete('declaracaoFinal');
+
+                    const response = await fetch('https://webhook-n8n-dev-conectarecife.recife.pe.gov.br/webhook/c0d84e1a-talentos-publicos', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (response.ok) {
+                        alert('Inscrição enviada com sucesso!');
                     } else {
-                        event.preventDefault();
-
-                        // Gather Data for Simulation
-                        const universities = [];
-                        document.querySelectorAll('[id^="uni_"]').forEach(uniCard => {
-                            const id = uniCard.id;
-                            const name = uniCard.querySelector(`[name="uni_name_${id}"]`).value;
-                            const country = uniCard.querySelector(`[name="uni_country_${id}"]`).value;
-                            const course = uniCard.querySelector(`[name="uni_course_${id}"]`).value;
-                            const selectedSubtema = uniCard.querySelector(`[name="subtema_${id}"]:checked`);
-
-                            if (selectedSubtema) {
-                                const [eixoId, subId] = selectedSubtema.value.split('|');
-                                universities.push({
-                                    name, country, course, eixoId, subId
-                                });
-                            }
-                        });
-
-                        console.log('Payload Simulado:', { universities });
-
-                        // Simulate submission
-                        const btn = form.querySelector('button[type="submit"]');
-                        const originalText = btn.innerHTML;
-                        btn.disabled = true;
-                        btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
-
-                        setTimeout(() => {
-                            alert(`Inscrição enviada com sucesso!\n\nUniversidades cadastradas: ${universities.length}`);
-                            btn.disabled = false;
-                            btn.innerHTML = originalText;
-                        }, 1500);
+                        throw new Error('Falha ao enviar formulário');
                     }
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        }) ()
+                } catch (error) {
+                    alert('Erro ao enviar inscrição. Por favor, tente novamente.');
+                    console.error(error);
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                }
+            }, false)
+        })();
+
+        const dadosVinculos = {{ JSON.stringify($json.vinculos) }};
+        const selectMatricula = document.getElementById('matricula');
+        const inputCargo = document.getElementById('cargo');
+        const inputVinculo = document.getElementById('vinculo');
+        const inputData = document.getElementById('dataAdmissao');
+
+        function formatarData(dataBruta) {
+            if (!dataBruta) return '';
+            const partes = dataBruta.split('-');
+            if (partes.length === 3) return `${partes[2]}/${partes[1]}/${partes[0]}`;
+            return dataBruta;
+        }
+
+        selectMatricula.addEventListener('change', function () {
+            const index = this.value;
+            if (index !== "") {
+                const selecionado = dadosVinculos[index];
+                inputCargo.value = selecionado.cargo || '';
+                inputVinculo.value = selecionado.vinculo || '';
+                inputData.value = formatarData(selecionado.dataAdmissao);
+            } else {
+                inputCargo.value = ''; inputVinculo.value = ''; inputData.value = '';
+            }
+        });
     </script>
 </body>
 
