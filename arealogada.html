@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -190,6 +190,17 @@
                 margin-left: 0;
             }
         }
+
+        #email {
+            text-transform: lowercase;
+        }
+
+        #lotacaoSegundoCargo,
+        input[name^="uni_name_"],
+        input[name^="uni_country_"],
+        input[name^="uni_course_"] {
+            text-transform: uppercase;
+        }
     </style>
 </head>
 
@@ -227,10 +238,10 @@
         <div class="mt-auto p-3 border-top border-secondary bg-dark bg-opacity-25">
             <div class="d-flex align-items-center gap-3">
                 <div class="bg-white rounded-circle d-flex align-items-center justify-content-center text-primary fw-bold shadow-sm"
-                    style="width: 40px; height: 40px;">JS</div>
+                    style="width: 40px; height: 40px;">{{ $json.nomeCompleto.split(' ').slice(0, 2).map(n =>
+                    n[0]).join('').toUpperCase() }}</div>
                 <div class="small text-white">
-                    <div class="fw-bold">João da Silva</div>
-                    <div class="opacity-75">Matrícula: 123456</div>
+                    <div class="fw-bold">{{$json.nomeCompleto}}</div>
                 </div>
             </div>
         </div>
@@ -272,8 +283,10 @@
                         <div class="col-md-3">
                             <label class="form-label">Matrícula</label>
                             <select class="form-select bg-light" id="matricula" onchange="onMatriculaChange()">
-                                <option value="0" selected>{{$json.vinculos[0].matricula}}</option>
-                                <option value="1">{{$json.vinculos[1].matricula}}</option>
+                                <option value="" selected disabled>Selecione...</option>
+                                <option value="0">{{ $json.vinculos[0].matricula }}</option>
+                                {{ $json.vinculos && $json.vinculos[1] ? '<option value="1">' +
+                                    $json.vinculos[1].matricula + '</option>' : '' }}
                             </select>
                         </div>
                         <div class="col-md-3">
@@ -286,7 +299,7 @@
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Data de Admissão</label>
-                            <input type="date" class="form-control bg-light" readonly id="dataAdmissao">
+                            <input type="text" class="form-control bg-light" readonly id="dataAdmissao">
                         </div>
                     </div>
                 </div>
@@ -303,16 +316,16 @@
                                 <option value="afegane">Afegane</option>
                                 <option value="sul-africana">Sul-Africana</option>
                                 <option value="albanesa">Albanesa</option>
-                                <option value="alema">AlemÃ£</option>
+                                <option value="alema">Alemã</option>
                                 <option value="andorrana">Andorrana</option>
                                 <option value="angolana">Angolana</option>
                                 <option value="antiguana">Antiguana</option>
                                 <option value="saudita">Saudita</option>
                                 <option value="argelina">Argelina</option>
                                 <option value="argentina">Argentina</option>
-                                <option value="armenia">ArmÃªnia</option>
+                                <option value="armenia">Armênia</option>
                                 <option value="australiana">Australiana</option>
-                                <option value="austriaca">AustrÃ­aca</option>
+                                <option value="austriaca">Austríaca</option>
                                 <option value="azerbaijana">Azerbaijana</option>
                                 <option value="bahamense">Bahamense</option>
                                 <option value="bangladeshiana">Bangladeshiana</option>
@@ -323,10 +336,10 @@
                                 <option value="beninense">Beninense</option>
                                 <option value="bielorrussa">Bielorrussa</option>
                                 <option value="boliviana">Boliviana</option>
-                                <option value="bosniaca">BÃ³sniaca</option>
+                                <option value="bosniaca">Bósniaca</option>
                                 <option value="botsuanesa">Botsuanesa</option>
                                 <option value="bruneiana">Bruneiana</option>
-                                <option value="bulgara">BÃºlgara</option>
+                                <option value="bulgara">Búlgara</option>
                                 <option value="burquinense">Burquinense</option>
                                 <option value="burundesa">Burundesa</option>
                                 <option value="butanesa">Butanesa</option>
@@ -352,7 +365,7 @@
                                 <option value="dinamarquesa">Dinamarquesa</option>
                                 <option value="djiboutiana">Djiboutiana</option>
                                 <option value="dominicana">Dominicana</option>
-                                <option value="egipcia">EgÃ­pcia</option>
+                                <option value="egipcia">Egípcia</option>
                                 <option value="salvadorenha">Salvadorenha</option>
                                 <option value="emiradense">Emiradense</option>
                                 <option value="equatoriana">Equatoriana</option>
@@ -361,8 +374,8 @@
                                 <option value="eslovena">Eslovena</option>
                                 <option value="espanhola">Espanhola</option>
                                 <option value="estadunidense">Estadunidense</option>
-                                <option value="estonia">EstÃ´nia</option>
-                                <option value="etiope">EtÃ­ope</option>
+                                <option value="estonia">Estônia</option>
+                                <option value="etiope">Etíope</option>
                                 <option value="fijiana">Fijiana</option>
                                 <option value="filipina">Filipina</option>
                                 <option value="finlandesa">Finlandesa</option>
@@ -377,13 +390,13 @@
                                 <option value="guianense">Guianense</option>
                                 <option value="guineense">Guineense</option>
                                 <option value="equatoguineana">Equatoguineana</option>
-                                <option value="guine-bissauense">GuinÃ©-Bissauense</option>
+                                <option value="guine-bissauense">Guiné-Bissauense</option>
                                 <option value="haitiana">Haitiana</option>
                                 <option value="hondurenha">Hondurenha</option>
-                                <option value="hungara">HÃºngara</option>
+                                <option value="hungara">Húngara</option>
                                 <option value="iemenita">Iemenita</option>
                                 <option value="indiana">Indiana</option>
-                                <option value="indonesia">IndonÃ©sia</option>
+                                <option value="indonesia">Indonésia</option>
                                 <option value="iraniana">Iraniana</option>
                                 <option value="iraquiana">Iraquiana</option>
                                 <option value="irlandesa">Irlandesa</option>
@@ -398,14 +411,14 @@
                                 <option value="kuwaitiana">Kuwaitiana</option>
                                 <option value="laosiana">Laosiana</option>
                                 <option value="lesota">Lesota</option>
-                                <option value="letÃ£">LetÃ£</option>
+                                <option value="leta">Letã</option>
                                 <option value="libanesa">Libanesa</option>
                                 <option value="liberiana">Liberiana</option>
-                                <option value="libia">LÃ­bia</option>
+                                <option value="libia">Líbia</option>
                                 <option value="liechtensteiniana">Liechtensteiniana</option>
                                 <option value="lituana">Lituana</option>
                                 <option value="luxemburguesa">Luxemburguesa</option>
-                                <option value="macedÃ´nia">MacedÃ´nia</option>
+                                <option value="macedonia">Macedônia</option>
                                 <option value="madagascarense">Madagascarense</option>
                                 <option value="malaia">Malaia</option>
                                 <option value="malauiana">Malauiana</option>
@@ -417,8 +430,8 @@
                                 <option value="mauriciana">Mauriciana</option>
                                 <option value="mauritana">Mauritana</option>
                                 <option value="mexicana">Mexicana</option>
-                                <option value="micronesia">MicronÃ©sia</option>
-                                <option value="moÃ§ambicana">MoÃ§ambicana</option>
+                                <option value="micronesia">Micronésia</option>
+                                <option value="mocambicana">Moçambicana</option>
                                 <option value="moldava">Moldava</option>
                                 <option value="monegasca">Monegasca</option>
                                 <option value="mongol">Mongol</option>
@@ -452,22 +465,22 @@
                                 <option value="salomonense">Salomonense</option>
                                 <option value="samoana">Samoana</option>
                                 <option value="santa-lucense">Santa-Lucense</option>
-                                <option value="sao-cristovense">SÃ£o-Cristovense</option>
-                                <option value="sao-marinense">SÃ£o-Marinense</option>
-                                <option value="sao-tomense">SÃ£o-Tomense</option>
+                                <option value="sao-cristovense">São-Cristovense</option>
+                                <option value="sao-marinense">São-Marinense</option>
+                                <option value="sao-tomense">São-Tomense</option>
                                 <option value="senegalesa">Senegalesa</option>
                                 <option value="serra-leonesa">Serra-Leonesa</option>
-                                <option value="servia">SÃ©rvia</option>
+                                <option value="servia">Sérvia</option>
                                 <option value="seichelense">Seichelense</option>
                                 <option value="singapuriana">Singapuriana</option>
-                                <option value="siria">SÃ­ria</option>
+                                <option value="siria">Síria</option>
                                 <option value="somali">Somali</option>
                                 <option value="cingalesa">Cingalesa</option>
                                 <option value="suazi">Suazi</option>
                                 <option value="sudanesa">Sudanesa</option>
                                 <option value="sul-sudanesa">Sul-Sudanesa</option>
                                 <option value="sueca">Sueca</option>
-                                <option value="suiÃ§a">SuÃ­Ã§a</option>
+                                <option value="suica">Suíça</option>
                                 <option value="surinamesa">Surinamesa</option>
                                 <option value="tailandesa">Tailandesa</option>
                                 <option value="tanzaniana">Tanzaniana</option>
@@ -496,50 +509,48 @@
                             <label class="form-label required">Lotação (Órgão/Secretaria)</label>
                             <select class="form-select" required id="lotacao">
                                 <option value="">Selecione...</option>
-                                <option value="EMPREL">EMPREL - Empresa Municipal de InformÃ¡tica</option>
-                                <option value="SEPLAGTD">SEPLAGTD - Secretaria de Planejamento, GestÃ£o e
-                                    TransformaÃ§Ã£o Digital</option>
-                                <option value="SDECTI">SDECTI - Secretaria de Desenvolvimento EconÃ´mico, CiÃªncia,
-                                    Tecnologia e InovaÃ§Ã£o</option>
+                                <option value="EMPREL">EMPREL - Empresa Municipal de Informática</option>
+                                <option value="SEPLAGTD">SEPLAGTD - Secretaria de Planejamento, Gestão e Transformação
+                                    Digital</option>
+                                <option value="SDECTI">SDECTI - Secretaria de Desenvolvimento Econômico, Ciência,
+                                    Tecnologia e Inovação</option>
                                 <option value="AESP">AESP - Gabinete de Assessoria Especial</option>
-                                <option value="PGM">PGM - Procuradoria-Geral do MunicÃ­pio</option>
+                                <option value="PGM">PGM - Procuradoria-Geral do Município</option>
                                 <option value="GVP">GVP - Gabinete Vice-Prefeitura</option>
                                 <option value="GPREF">GPREF - Gabinete Prefeito</option>
                                 <option value="GABPE">GABPE - Gabinete de Projetos Especiais</option>
-                                <option value="GABCENTRO">GABCENTRO - Gabineto do Centro do Recife</option>
-                                <option value="GABCOM">GABCOM - Gabinete de ComunicaÃ§Ã£o</option>
-                                <option value="CGM">CGM - Controladoria-Geral do MunicÃ­pio</option>
-                                <option value="AMPASS">AMPASS - Autarquia Municipal de PrevidÃªncia e AssistÃªncia Ã 
-                                    SaÃºde dos Servidores</option>
-                                <option value="CONVIVA">CONVIVA - CONVIVA Mercados e Feiras- Autarquia Municipal
+                                <option value="GABCENTRO">GABCENTRO - Gabinete do Centro do Recife</option>
+                                <option value="GABCOM">GABCOM - Gabinete de Comunicação</option>
+                                <option value="CGM">CGM - Controladoria-Geral do Município</option>
+                                <option value="AMPASS">AMPASS - Autarquia Municipal de Previdência e Assistência à Saúde
+                                    dos Servidores</option>
+                                <option value="CONVIVA">CONVIVA - CONVIVA Mercados e Feiras - Autarquia Municipal
                                 </option>
-                                <option value="CTTU">CTTU - Autarquia de TrÃ¢nsito e Transporte Urbano do Recife
+                                <option value="CTTU">CTTU - Autarquia de Trânsito e Transporte Urbano do Recife</option>
+                                <option value="EMLURB">EMLURB - Autarquia de Manutenção e Limpeza Urbana do Recife
                                 </option>
-                                <option value="EMLURB">EMLURB - Autarquia de ManutenÃ§Ã£o e Limpeza Urbana do Recife
-                                </option>
-                                <option value="URB">URB - Autarquia de UrbanizaÃ§Ã£o do Recife</option>
-                                <option value="FCCR">FCCR - FundaÃ§Ã£o de Cultura Cidade do Recife</option>
-                                <option value="SEGOV">SEGOV - Secretaria de Governo e ParticipaÃ§Ã£o Social</option>
-                                <option value="SEFIN">SEFIN - Secretaria de FinanÃ§as</option>
+                                <option value="URB">URB - Autarquia de Urbanização do Recife</option>
+                                <option value="FCCR">FCCR - Fundação de Cultura Cidade do Recife</option>
+                                <option value="SEGOV">SEGOV - Secretaria de Governo e Participação Social</option>
+                                <option value="SEFIN">SEFIN - Secretaria de Finanças</option>
                                 <option value="SEINFRA">SEINFRA - Secretaria de Infraestrutura</option>
                                 <option value="SMAS">SMAS - Secretaria de Meio Ambiente e Sustentabilidade</option>
-                                <option value="SEPUL">SEPUL - Secretaria de PolÃ­tica Urbana e Licenciamento</option>
+                                <option value="SEPUL">SEPUL - Secretaria de Política Urbana e Licenciamento</option>
                                 <option value="SESAN">SESAN - Secretaria de Saneamento</option>
-                                <option value="SEHAB">SEHAB - Secretaria de HabitaÃ§Ã£o</option>
-                                <option value="SESEC">SESEC - Secretaria de SeguranÃ§a CidadÃ£</option>
+                                <option value="SEHAB">SEHAB - Secretaria de Habitação</option>
+                                <option value="SESEC">SESEC - Secretaria de Segurança Cidadã</option>
                                 <option value="SEMUL">SEMUL - Secretaria da Mulher</option>
                                 <option value="SDSDHJPD">SDSDHJPD - Secretaria de Desenvolvimento Social, Direitos
-                                    Humanos, Juventude e PolÃ­ticas sobre Drogas</option>
+                                    Humanos, Juventude e Políticas sobre Drogas</option>
                                 <option value="SECULT">SECULT - Secretaria de Cultura</option>
                                 <option value="SESP">SESP - Secretaria de Esportes</option>
                                 <option value="SETURL">SETURL - Secretaria de Turismo e Lazer</option>
-                                <option value="STQP">STQP - Secretaria de Trabalho e QualificaÃ§Ã£o Profissional
-                                </option>
-                                <option value="SEDUC">SEDUC - Secretaria de EducaÃ§Ã£o</option>
-                                <option value="SESAU">SESAU - Secretaria de SaÃºde</option>
+                                <option value="STQP">STQP - Secretaria de Trabalho e Qualificação Profissional</option>
+                                <option value="SEDUC">SEDUC - Secretaria de Educação</option>
+                                <option value="SESAU">SESAU - Secretaria de Saúde</option>
                                 <option value="GIMP">GIMP - Gabinete de Imprensa</option>
                                 <option value="PROMORAR">PROMORAR - Gabinete de Gerenciamento do Programa de
-                                    RequalificaÃ§Ã£o e ResiliÃªncia Urbana em Ãreas de Vulnerabilidade Socioambiental
+                                    Requalificação e Resiliência Urbana em Áreas de Vulnerabilidade Socioambiental
                                 </option>
                             </select>
                         </div>
@@ -767,7 +778,6 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end gap-3 mt-4">
-                        <button type="button" class="btn btn-outline-secondary px-4 py-2">Salvar Rascunho</button>
                         <button type="submit" class="btn btn-primary btn-lg px-5 py-2 shadow">Enviar Inscrição</button>
                     </div>
                 </div>
@@ -930,29 +940,22 @@
             dadosComuns: {
                 cpf: `{{$json.cpf}}`,
                 nomeCompleto: `{{$json.nomeCompleto}}`,
-                dataNascimento: `{{$json.dataNascimento}}`,
-                nacionalidade: `{{$json.nacionalidade}}`,
-                lotacao: `{{$json.lotacao}}`,
-                pcd: {{ $json.pcd }},
-        genero: `{{$json.genero}}`,
-            racaCor: `{{$json.racaCor}}`,
-                email: `{{$json.email}}`,
-                    telefone: `{{$json.telefone}}`
+                // ... outros campos
             },
-        vinculos: [
-            {
-                matricula: `{{$json.vinculos[0].matricula}}`,
-                cargo: `{{$json.vinculos[0].cargo}}`,
-                vinculo: `{{$json.vinculos[0].vinculo}}`,
-                dataAdmissao: `{{$json.vinculos[0].dataAdmissao}}`
-            },
-            {
-                matricula: `{{$json.vinculos[1].matricula}}`,
-                cargo: `{{$json.vinculos[1].cargo}}`,
-                vinculo: `{{$json.vinculos[1].vinculo}}`,
-                dataAdmissao: `{{$json.vinculos[1].dataAdmissao}}`
-            }
-        ]
+            vinculos: [
+                {
+                    matricula: `{{ $json.vinculos[0]?.matricula || "" }}`,
+                    cargo: `{{ $json.vinculos[0]?.cargo || "" }}`,
+                    vinculo: `{{ $json.vinculos[0]?.vinculo || "" }}`,
+                    dataAdmissao: `{{ $json.vinculos[0]?.dataAdmissao || "" }}`
+                },
+                {
+                    matricula: `{{ $json.vinculos[1]?.matricula || "" }}`,
+                    cargo: `{{ $json.vinculos[1]?.cargo || "" }}`,
+                    vinculo: `{{ $json.vinculos[1]?.vinculo || "" }}`,
+                    dataAdmissao: `{{ $json.vinculos[1]?.dataAdmissao || "" }}`
+                }
+            ]
         };
 
         // Função auxiliar para valores seguros
@@ -963,25 +966,39 @@
         // Function called when matricula changes
         function onMatriculaChange() {
             const selectMatricula = document.getElementById('matricula');
-            const selectedIndex = parseInt(selectMatricula.value);
+            const val = selectMatricula.value; // Pega o "0" ou "1"
 
-            // Use BIND.vinculos
-            const vinculoData = BIND.vinculos[selectedIndex];
-
-            if (vinculoData) {
-                document.getElementById('cargo').value = safeValue(vinculoData.cargo);
-                document.getElementById('vinculo').value = safeValue(vinculoData.vinculo);
-                document.getElementById('dataAdmissao').value = safeValue(vinculoData.dataAdmissao);
-            } else {
-                // Clear fields if no data
+            // Se não selecionou nada, limpa e sai
+            if (val === "" || val === null) {
                 document.getElementById('cargo').value = '';
                 document.getElementById('vinculo').value = '';
                 document.getElementById('dataAdmissao').value = '';
+                return;
+            }
+
+            const index = parseInt(val);
+            const vinculoData = BIND.vinculos[index];
+
+            const formatarParaBR = (data) => {
+                if (!data || data.includes('undefined') || data.trim() === "") return "";
+                const partes = data.split("-");
+                return partes.length === 3 ? `${partes[2]}/${partes[1]}/${partes[0]}` : data;
+            };
+
+            if (vinculoData) {
+                // Usamos console.log para você poder ver se os dados chegaram (aperte F12 no navegador)
+                console.log("Dados encontrados:", vinculoData);
+
+                document.getElementById('cargo').value = safeValue(vinculoData.cargo);
+                document.getElementById('vinculo').value = safeValue(vinculoData.vinculo);
+                document.getElementById('dataAdmissao').value = formatarParaBR(safeValue(vinculoData.dataAdmissao));
+
+                // Atualiza a matrícula no avatar da sidebar
+                const display = document.getElementById('exibicaoMatricula');
+                if (display) display.textContent = safeValue(vinculoData.matricula);
             }
         }
-    </script>
 
-    <script>
         function showSection(sectionId) {
             // Hide all sections
             document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
@@ -1153,60 +1170,217 @@
 
         function updateButtons() {
             const btn = document.getElementById('btnAddUni');
-            const alert = document.getElementById('maxUniAlert');
+            const alertEl = document.getElementById('maxUniAlert');
 
             if (uniCount >= maxUnis) {
                 btn.disabled = true;
-                alert.classList.remove('d-none');
+                alertEl.classList.remove('d-none');
             } else {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
+                btn.disabled = false;
+                alertEl.classList.add('d-none');
+            }
+        }
 
-                        // Find first invalid element and scroll to it
-                        const firstInvalid = form.querySelector(':invalid');
-                        if (firstInvalid) {
-                            firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }
-                    } else {
-                        event.preventDefault();
+        // Inicializa com uma universidade
+        document.addEventListener('DOMContentLoaded', () => { addUniversity(); });
 
-                        // Gather Data for Simulation
-                        const universities = [];
-                        document.querySelectorAll('[id^="uni_"]').forEach(uniCard => {
-                            const id = uniCard.id;
-                            const name = uniCard.querySelector(`[name="uni_name_${id}"]`).value;
-                            const country = uniCard.querySelector(`[name="uni_country_${id}"]`).value;
-                            const course = uniCard.querySelector(`[name="uni_course_${id}"]`).value;
-                            const selectedSubtema = uniCard.querySelector(`[name="subtema_${id}"]:checked`);
+        // Modal de feedback e submit handler
+        (() => {
+            'use strict';
+            const form = document.getElementById('formInscricao');
 
-                            if (selectedSubtema) {
-                                const [eixoId, subId] = selectedSubtema.value.split('|');
-                                universities.push({
-                                    name, country, course, eixoId, subId
-                                });
-                            }
-                        });
+            // CSS para animações
+            const styleSheet = document.createElement('style');
+            styleSheet.textContent = `
+                @keyframes bounce {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-15px); }
+                }
+                @keyframes pulse {
+                    0%, 100% { transform: scale(1); }
+                    50% { transform: scale(1.2); }
+                }
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-5px) rotate(-5deg); }
+                    75% { transform: translateX(5px) rotate(5deg); }
+                }
+                .emoji-bounce { display: inline-block; animation: bounce 1s ease-in-out infinite; }
+                .emoji-pulse { display: inline-block; animation: pulse 1.5s ease-in-out infinite; }
+                .emoji-shake { display: inline-block; animation: shake 0.5s ease-in-out infinite; }
+                .emoji-rocket { display: inline-block; animation: bounce 0.8s ease-in-out infinite 0.2s; }
+            `;
+            document.head.appendChild(styleSheet);
 
-                        console.log('Payload Simulado:', { universities });
+            document.getElementById('email').addEventListener('input', function () {
+                this.value = this.value.toLowerCase().trim();
+            });
 
-                        // Simulate submission
-                        const btn = form.querySelector('button[type="submit"]');
-                        const originalText = btn.innerHTML;
-                        btn.disabled = true;
-                        btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
+            document.getElementById('telefone').addEventListener('input', function () {
+                // Remove tudo que não for dígito
+                let v = this.value.replace(/\D/g, '');
+                // Limita a 11 dígitos
+                if (v.length > 11) v = v.slice(0, 11);
+                this.value = v;
+            });
 
-                        setTimeout(() => {
-                            alert(`Inscrição enviada com sucesso!\n\nUniversidades cadastradas: ${universities.length}`);
-                            btn.disabled = false;
-                            btn.innerHTML = originalText;
-                        }, 1500);
+            document.getElementById('matriculaSegundoCargo').addEventListener('input', function () {
+                this.value = this.value.replace(/\D/g, '');
+            });
+
+            document.getElementById('lotacaoSegundoCargo').addEventListener('input', function () {
+                this.value = this.value.toUpperCase();
+            });
+
+            function addUniversity() {
+                // ... seu código existente de criar o HTML ...
+                container.insertAdjacentHTML('beforeend', uniHtml);
+
+                // ADICIONE ISTO: Força maiúsculo nos novos campos
+                const novaUni = container.lastElementChild;
+                const inputsParaConverter = novaUni.querySelectorAll('input[type="text"]');
+
+                inputsParaConverter.forEach(input => {
+                    input.addEventListener('input', function () {
+                        this.value = this.value.toUpperCase();
+                    });
+                });
+
+                updateButtons();
+            }
+
+            // Cria modal de feedback
+            const modalHtml = `
+                <div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content border-0 shadow-lg" id="feedbackModalContent">
+                            <div class="modal-header border-0 pb-0" id="feedbackModalHeader">
+                                <h4 class="modal-title w-100 text-center" id="feedbackModalTitle"></h4>
+                            </div>
+                            <div class="modal-body text-center py-4">
+                                <div id="feedbackModalIcon" style="font-size: 4rem;"></div>
+                                <div id="feedbackModalMessage" class="mt-3 fs-5"></div>
+                                <div class="mt-4 p-3 rounded" id="feedbackCountdown">
+                                    <i class="bi bi-clock-history me-2"></i>
+                                    <span>Redirecionando em <strong id="countdownTimer">10</strong> segundos...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            const feedbackModal = new bootstrap.Modal(document.getElementById('feedbackModal'));
+
+            function showFeedbackModal(isSuccess, responseData) {
+                const modalContent = document.getElementById('feedbackModalContent');
+                const modalHeader = document.getElementById('feedbackModalHeader');
+                const modalTitle = document.getElementById('feedbackModalTitle');
+                const modalIcon = document.getElementById('feedbackModalIcon');
+                const modalMessage = document.getElementById('feedbackModalMessage');
+                const countdownDiv = document.getElementById('feedbackCountdown');
+                const countdownTimer = document.getElementById('countdownTimer');
+
+                // Extrai mensagem do response se existir
+                let mensagem = '';
+                if (responseData && typeof responseData === 'object' && responseData.mensagem) {
+                    mensagem = responseData.mensagem;
+                } else if (typeof responseData === 'string') {
+                    mensagem = responseData;
+                }
+
+                if (isSuccess) {
+                    modalContent.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
+                    modalHeader.style.background = 'rgba(40, 167, 69, 0.1)';
+                    modalTitle.innerHTML = '<span class="emoji-bounce">🎉</span> Sucesso! <span class="emoji-bounce">🎉</span>';
+                    modalTitle.style.color = '#155724';
+                    modalIcon.innerHTML = '<span class="emoji-pulse">✅</span> <span class="emoji-rocket">🚀</span>';
+                    modalMessage.innerHTML = `<span class="text-success fw-bold">Sua inscrição foi enviada com sucesso!</span>${mensagem ? '<br><span class="text-muted mt-2 d-block">' + mensagem + '</span>' : ''}`;
+                    countdownDiv.style.background = 'rgba(40, 167, 69, 0.15)';
+                    countdownDiv.style.color = '#155724';
+                } else {
+                    modalContent.style.background = 'linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%)';
+                    modalHeader.style.background = 'rgba(220, 53, 69, 0.1)';
+                    modalTitle.innerHTML = '<span class="emoji-shake">😔</span> Ops! Algo deu errado <span class="emoji-shake">😔</span>';
+                    modalTitle.style.color = '#721c24';
+                    modalIcon.innerHTML = '<span class="emoji-shake">❌</span> <span class="emoji-pulse">⚠️</span>';
+                    modalMessage.innerHTML = `<span class="text-danger fw-bold">Houve um problema ao enviar sua inscrição.</span>${mensagem ? '<br><span class="text-muted mt-2 d-block">' + mensagem + '</span>' : '<br><span class="text-muted mt-2 d-block">Por favor, tente novamente.</span>'}`;
+                    countdownDiv.style.background = 'rgba(220, 53, 69, 0.15)';
+                    countdownDiv.style.color = '#721c24';
+                }
+
+                feedbackModal.show();
+
+                let seconds = 10;
+                countdownTimer.textContent = seconds;
+                const countdownInterval = setInterval(() => {
+                    seconds--;
+                    countdownTimer.textContent = seconds;
+                    if (seconds <= 0) {
+                        clearInterval(countdownInterval);
+                        window.location.href = 'https://webhook-n8n-dev-conectarecife.recife.pe.gov.br/webhook/talentos-publicos';
                     }
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        }) ()
+                }, 1000);
+            }
+
+            form.addEventListener('submit', async event => {
+                event.preventDefault();
+                if (!form.checkValidity()) {
+                    event.stopPropagation();
+                    const firstInvalid = form.querySelector(':invalid');
+                    if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    form.classList.add('was-validated');
+                    return;
+                }
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
+                try {
+                    const formData = new FormData(form);
+                    // Remove todos os checkboxes
+                    formData.delete('declaracaoFinal');
+                    formData.delete('req1');
+                    formData.delete('req2');
+                    formData.delete('req3');
+                    formData.delete('req4');
+                    formData.delete('req5');
+                    formData.delete('req6');
+                    formData.delete('req7');
+                    formData.delete('req8');
+                    // Processa subtemas para incluir eixo e subtema com descrições
+                    const subtemaKeys = [];
+                    for (let [key, value] of formData.entries()) {
+                        if (key.startsWith('subtema_')) subtemaKeys.push({ key, value });
+                    }
+                    subtemaKeys.forEach(({ key, value }) => {
+                        const [eixoId, subtemaId] = value.split('|');
+                        const eixo = eixosData.find(e => e.id === eixoId);
+                        if (eixo) {
+                            const subtema = eixo.subtemas.find(s => s.id === subtemaId);
+                            const uniId = key.replace('subtema_', '');
+                            formData.set('eixo_id_' + uniId, eixoId);
+                            formData.set('eixo_descricao_' + uniId, eixo.title);
+                            formData.set('subtema_id_' + uniId, subtemaId);
+                            formData.set('subtema_descricao_' + uniId, subtema ? subtema.text : '');
+                        }
+                    });
+                    const response = await fetch('https://webhook-n8n-dev-conectarecife.recife.pe.gov.br/webhook/c0d84e1a-talentos-publicos', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    let responseData;
+                    try { responseData = await response.json(); } catch { responseData = await response.text(); }
+                    showFeedbackModal(response.ok, responseData);
+                } catch (error) {
+                    console.error(error);
+                    showFeedbackModal(false, { mensagem: error.message || 'Erro de conexão. Por favor, tente novamente.' });
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                }
+            }, false);
+        })();
+
     </script>
 </body>
 
