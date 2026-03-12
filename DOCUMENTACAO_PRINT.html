@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Técnico e Funcional - Talentos Públicos Recife</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0053a4;
+            --secondary-color: #003a73;
+            --accent-color: #00a3ff;
+            --text-color: #1b263b;
+            --light-gray: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+
+        /* Print Settings */
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+
+        @media print {
+            body {
+                width: 210mm;
+                height: 297mm;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            a {
+                text-decoration: none;
+                color: black;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            h2 {
+                page-break-before: always;
+            }
+
+            table,
+            pre {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Layout Components */
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+        }
+
+        /* Capa */
+        .cover-page {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 10px solid var(--primary-color);
+        }
+
+        .cover-logo {
+            margin-bottom: 3rem;
+        }
+
+        .cover-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .cover-subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 4rem;
+            font-weight: 300;
+        }
+
+        .cover-meta {
+            font-size: 1rem;
+            color: #666;
+            margin-top: auto;
+            padding-bottom: 2rem;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--secondary-color);
+        }
+
+        h2 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            margin-top: 2rem;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        /* Tables (Data Dictionary) */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--light-gray);
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: #f1f3f5;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid #dcdcdc;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.85rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+            overflow-x: hidden;
+        }
+
+        .code-label {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.25rem;
+            display: block;
+            font-weight: bold;
+        }
+
+        /* Signature Section */
+        .signature-section {
+            margin-top: 5rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .signature-box {
+            flex: 1;
+            border-top: 1px solid black;
+            padding-top: 0.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- CAPA -->
+        <div class="cover-page">
+            <div class="cover-logo">
+                <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#0053a4" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+            </div>
+            <h1 class="cover-title">MANUAL TÉCNICO E FUNCIONAL</h1>
+            <div class="cover-subtitle">Programa Talentos Públicos Recife - Trajetórias</div>
+
+            <div class="cover-meta">
+                <p><strong>Cliente:</strong> EMPREL / Prefeitura do Recife</p>
+                <p><strong>Projeto:</strong> Portal do Servidor - Módulo de Afastamento para Mestrado</p>
+                <p><strong>Versão:</strong> 1.0.0 (Release Candidate)</p>
+                <p><strong>Data de Emissão:</strong> 31 de Janeiro de 2026</p>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- SUMÁRIO -->
+        <h2>Sumário Analítico</h2>
+        <ul style="list-style-type: none; padding: 0;">
+            <li><a href="#apresentacao">1. Contexto Executivo</a>
+                <ul>
+                    <li>1.1 Apresentação e Objetivos</li>
+                    <li>1.2 Público Alvo</li>
+                    <li>1.3 Guia de Usabilidade (User Journey)</li>
+                </ul>
+            </li>
+            <li><a href="#tecnica">2. Especificação Técnica</a>
+                <ul>
+                    <li>2.1 Arquitetura e Stack Tecnológico</li>
+                    <li>2.2 Frontend e Interface</li>
+                </ul>
+            </li>
+            <li><a href="#dados">3. Engenharia de Dados</a>
+                <ul>
+                    <li>3.1 Modelo de Dados (Schema Relacional)</li>
+                    <li>3.2 Dicionário de Dados Detalhado</li>
+                </ul>
+            </li>
+            <li><a href="#codigo">4. Catálogo de Consultas e Integração</a>
+                <ul>
+                    <li>4.1 Consultas SQL (Backend Simulation)</li>
+                    <li>4.2 Payloads de Integração (JSON)</li>
+                </ul>
+            </li>
+            <li><a href="#fluxo">5. Fluxo de Processamento</a></li>
+            <li><a href="#aceite">6. Termo de Aceite</a></li>
+        </ul>
+
+        <div class="page-break"></div>
+
+        <!-- 1. CONTEXTO EXECUTIVO -->
+        <h2 id="apresentacao">1. Contexto Executivo</h2>
+
+        <h3>1.1 Apresentação</h3>
+        <p>O <strong>Sistema Talentos Públicos Recife - Trajetórias</strong> é uma solução digital desenvolvida para
+            modernizar e dar transparência ao processo seletivo de servidores públicos municipais que pleiteiam
+            afastamento remunerado para cursar mestrado stricto sensu. O sistema substitui processos físicos por um
+            fluxo 100% digital, garantindo auditabilidade, padronização e agilidade na análise das candidaturas.</p>
+        <p>O portal permite a inscrição, envio de documentação comprobatória, acompanhamento de status e interposição de
+            recursos, tudo integrado às bases de dados corporativas da Prefeitura.</p>
+
+        <h3>1.2 Público Alvo</h3>
+        <ul>
+            <li><strong>Servidores Efetivos:</strong> Usuários principais que submetem candidaturas.</li>
+            <li><strong>Gestores de RH/SAD:</strong> Responsáveis pela validação cadastral.</li>
+            <li><strong>Comissão Avaliadora:</strong> Banca examinadora que pontua os projetos (Plano de Aplicação).
+            </li>
+            <li><strong>Auditores:</strong> Órgãos de controle que verificam a lisura do processo.</li>
+        </ul>
+
+        <h3>1.3 Guia de Usabilidade</h3>
+        <p>A jornada do usuário foi desenhada para ser linear e autoexplicativa:</p>
+        <ol>
+            <li><strong>Acesso e Identificação:</strong> O servidor acessa o portal logado (SSO/Token), onde seus dados
+                funcionais (Cargo, Matrícula, Lotação) são carregados automaticamente via integração, evitando erros de
+                preenchimento.</li>
+            <li><strong>Formulário de Inscrição:</strong>
+                <ul>
+                    <li><em>Dados Complementares:</em> Preenchimento de raça/cor, gênero, contatos e informações não
+                        constantes na base RH.</li>
+                    <li><em>Requisitos Básicos:</em> Checklist obrigatório de elegibilidade (estabilidade, tempo de
+                        serviço, etc).</li>
+                </ul>
+            </li>
+            <li><strong>Documentação:</strong> Upload de arquivos PDF (Diploma, Carta de Aceite, Carta de Motivação,
+                Plano de Aplicação). O sistema valida extensões e obrigatoriedade.</li>
+            <li><strong>Dados Acadêmicos:</strong> Cadastro dinâmico de até 3 universidades pretendidas com seus
+                respectivos cursos.</li>
+            <li><strong>Declaração e Envio:</strong> Aceite legal dos termos do edital e submissão final, gerando número
+                de protocolo.</li>
+        </ol>
+
+        <div class="page-break"></div>
+
+        <!-- 2. ESPECIFICAÇÃO TÉCNICA -->
+        <h2 id="tecnica">2. Especificação Técnica</h2>
+
+        <h3>2.1 Stack Tecnológico</h3>
+        <p>O projeto segue os padrões de desenvolvimento web moderno com foco em performance e manutenibilidade:</p>
+        <ul>
+            <li><strong>Frontend:</strong> HTML5 Semântico, Dashboard Layout.</li>
+            <li><strong>Estilização:</strong> CSS3 Core Variables + Bootstrap 5.3 (Grid System e Componentes UI). Fonte
+                <em>Public Sans</em>.
+            </li>
+            <li><strong>Scripting:</strong> JavaScript ES6+ (Vanilla) para manipulação de DOM, validação de formulários
+                (Constraints API) e construção de objetos JSON.</li>
+            <li><strong>Backend/Middleware:</strong> n8n (Workflow Automation) para orquestração de chamadas.</li>
+            <li><strong>Integração:</strong> RESTful API via Fetch API (Client-side) e Webhooks.</li>
+        </ul>
+
+        <h3>2.2 Decisões de Design</h3>
+        <p>A interface utiliza um layout de sidebar fixa com navegação por abas (SPA-like behavior), permitindo
+            transição fluida entre as seções "Inscrição", "Recursos" e "Acompanhamento" sem recarregamento de página.
+            Utiliza-se <code>localStorage</code> e variáveis de sessão para persistência temporária de dados durante o
+            preenchimento.</p>
+
+        <div class="page-break"></div>
+
+        <!-- 3. ENGENHARIA DE DADOS -->
+        <h2 id="dados">3. Engenharia de Dados</h2>
+        <p>Abaixo detalhamos o esquema relacional lógico utilizado para persistência dos dados. Este dicionário serve
+            como referência absoluta para DBAs e Desenvolvedores Backend.</p>
+
+        <h3>3.1 Tabela Principal: TB_TP_CANDIDATURA</h3>
+        <p>Armazena os dados "cabeçalho" da inscrição e dados pessoais imutáveis e complementares.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome da Coluna</th>
+                    <th>Tipo de Dado</th>
+                    <th>Chave</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ID_CANDIDATURA</td>
+                    <td>UUID</td>
+                    <td>PK</td>
+                    <td>Identificador único da inscrição</td>
+                </tr>
+                <tr>
+                    <td>NU_MATRICULA</td>
+                    <td>VARCHAR(20)</td>
+                    <td>FK</td>
+                    <td>Matrícula do servidor (Chave de busca RH)</td>
+                </tr>
+                <tr>
+                    <td>NM_COMPLETO</td>
+                    <td>VARCHAR(255)</td>
+                    <td></td>
+                    <td>Nome completo (Origin: Base RH)</td>
+                </tr>
+                <tr>
+                    <td>NR_CPF</td>
+                    <td>CHAR(11)</td>
+                    <td></td>
+                    <td>CPF sem formatação</td>
+                </tr>
+                <tr>
+                    <td>DT_NASCIMENTO</td>
+                    <td>DATE</td>
+                    <td></td>
+                    <td>Data de nascimento</td>
+                </tr>
+                <tr>
+                    <td>NM_CARGO</td>
+                    <td>VARCHAR(100)</td>
+                    <td></td>
+                    <td>Cargo efetivo principal</td>
+                </tr>
+                <tr>
+                    <td>NM_LOTACAO</td>
+                    <td>VARCHAR(100)</td>
+                    <td></td>
+                    <td>Secretaria/Órgão de lotação atual</td>
+                </tr>
+                <tr>
+                    <td>DT_ADMISSAO</td>
+                    <td>DATE</td>
+                    <td></td>
+                    <td>Data de admissão no serviço público</td>
+                </tr>
+                <tr>
+                    <td>TX_EMAIL</td>
+                    <td>VARCHAR(150)</td>
+                    <td></td>
+                    <td>E-mail de contato informado</td>
+                </tr>
+                <tr>
+                    <td>NR_TELEFONE</td>
+                    <td>VARCHAR(20)</td>
+                    <td></td>
+                    <td>Telefone/Celular de contato</td>
+                </tr>
+                <tr>
+                    <td>TP_GENERO</td>
+                    <td>VARCHAR(20)</td>
+                    <td></td>
+                    <td>Gênero (feminino, masculino, outro)</td>
+                </tr>
+                <tr>
+                    <td>TP_RACA_COR</td>
+                    <td>VARCHAR(20)</td>
+                    <td></td>
+                    <td>Autodeclaração (branca, preta, parda...)</td>
+                </tr>
+                <tr>
+                    <td>FL_PCD</td>
+                    <td>BOOLEAN</td>
+                    <td></td>
+                    <td>Pessoa com Deficiência (True/False)</td>
+                </tr>
+                <tr>
+                    <td>NM_NACIONALIDADE</td>
+                    <td>VARCHAR(50)</td>
+                    <td></td>
+                    <td>Nacionalidade selecionada</td>
+                </tr>
+                <tr>
+                    <td>VL_FAIXA_REMUNERACAO</td>
+                    <td>VARCHAR(20)</td>
+                    <td></td>
+                    <td>Código da faixa salarial</td>
+                </tr>
+                <tr>
+                    <td>FL_OUTRO_CARGO</td>
+                    <td>BOOLEAN</td>
+                    <td></td>
+                    <td>Possui outro cargo público?</td>
+                </tr>
+                <tr>
+                    <td>DT_INSCRICAO</td>
+                    <td>TIMESTAMP</td>
+                    <td></td>
+                    <td>Data/Hora do envio do formulário</td>
+                </tr>
+                <tr>
+                    <td>ST_STATUS</td>
+                    <td>VARCHAR(20)</td>
+                    <td></td>
+                    <td>Status atual (EM_ANALISE, APROVADO...)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>3.2 Tabela Detalhe: TB_TP_VINCULO_SECUNDARIO</h3>
+        <p>Armazena dados do segundo vínculo, caso <code>FL_OUTRO_CARGO</code> seja verdadeiro.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome da Coluna</th>
+                    <th>Tipo de Dado</th>
+                    <th>Chave</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ID_VINCULO_SEC</td>
+                    <td>INT</td>
+                    <td>PK</td>
+                    <td>Identificador sequencial</td>
+                </tr>
+                <tr>
+                    <td>ID_CANDIDATURA</td>
+                    <td>UUID</td>
+                    <td>FK</td>
+                    <td>Referência à candidatura principal</td>
+                </tr>
+                <tr>
+                    <td>NU_MATRICULA_SEC</td>
+                    <td>VARCHAR(20)</td>
+                    <td></td>
+                    <td>Matrícula do segundo cargo</td>
+                </tr>
+                <tr>
+                    <td>NM_LOTACAO_SEC</td>
+                    <td>VARCHAR(100)</td>
+                    <td></td>
+                    <td>Lotação do segundo cargo</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>3.3 Tabela Detalhe: TB_TP_ACADEMICO</h3>
+        <p>Armazena a lista de universidades/cursos pretendidos (Relacionamento 1:N).</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome da Coluna</th>
+                    <th>Tipo de Dado</th>
+                    <th>Chave</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ID_ACADEMICO</td>
+                    <td>INT</td>
+                    <td>PK</td>
+                    <td>Identificador sequencial</td>
+                </tr>
+                <tr>
+                    <td>ID_CANDIDATURA</td>
+                    <td>UUID</td>
+                    <td>FK</td>
+                    <td>Referência à candidatura</td>
+                </tr>
+                <tr>
+                    <td>NM_UNIVERSIDADE</td>
+                    <td>VARCHAR(200)</td>
+                    <td></td>
+                    <td>Nome da Instituição de Ensino Superior</td>
+                </tr>
+                <tr>
+                    <td>NM_PAIS</td>
+                    <td>VARCHAR(50)</td>
+                    <td></td>
+                    <td>País da Instituição</td>
+                </tr>
+                <tr>
+                    <td>NM_CURSO</td>
+                    <td>VARCHAR(200)</td>
+                    <td></td>
+                    <td>Nome do Mestrado/Curso pretendido</td>
+                </tr>
+                <tr>
+                    <td>NR_ORDEM_PREF</td>
+                    <td>INT</td>
+                    <td></td>
+                    <td>Ordem de preferência ou inserção</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>3.4 Tabela Detalhe: TB_TP_REQUISITOS</h3>
+        <p>Armazena o checklist de elegibilidade (Termo de aceite das regras editalícias).</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome da Coluna</th>
+                    <th>Tipo de Dado</th>
+                    <th>Chave</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ID_REQ_CHECK</td>
+                    <td>INT</td>
+                    <td>PK</td>
+                    <td>Identificador</td>
+                </tr>
+                <tr>
+                    <td>ID_CANDIDATURA</td>
+                    <td>UUID</td>
+                    <td>FK</td>
+                    <td>Referência à candidatura</td>
+                </tr>
+                <tr>
+                    <td>FL_SERVIDOR_EFETIVO</td>
+                    <td>BOOLEAN</td>
+                    <td></td>
+                    <td>Declara ser efetivo/estável</td>
+                </tr>
+                <tr>
+                    <td>FL_GRADUACAO_COMPLETA</td>
+                    <td>BOOLEAN</td>
+                    <td></td>
+                    <td>Declara ter graduação completa</td>
+                </tr>
+                <tr>
+                    <td>FL_VINCULO_ATIVO</td>
+                    <td>BOOLEAN</td>
+                    <td></td>
+                    <td>Declara vínculo ativo PCR</td>
+                </tr>
+                <tr>
+                    <td>FL_NAO_CEDIDO</td>
+                    <td>BOOLEAN</td>
+                    <td></td>
+                    <td>Declara não estar cedido</td>
+                </tr>
+                <tr>
+                    <td>FL_SEM_APOSEN_COMP</td>
+                    <td>BOOLEAN</td>
+                    <td></td>
+                    <td>Declara tempo hábil antes da compulsória</td>
+                </tr>
+                <tr>
+                    <td>FL_INICIO_APP</td>
+                    <td>BOOLEAN</td>
+                    <td></td>
+                    <td>Declara ter iniciado application</td>
+                </tr>
+                <tr>
+                    <td>FL_COMPROMISSO_RETORNO</td>
+                    <td>BOOLEAN</td>
+                    <td></td>
+                    <td>Declara compromisso de retorno</td>
+                </tr>
+                <tr>
+                    <td>FL_SEM_PARENTESCO</td>
+                    <td>BOOLEAN</td>
+                    <td></td>
+                    <td>Declara não ter parentesco com comissão</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-break"></div>
+
+        <!-- 4. CATÁLOGO DE CONSULTAS E CÓDIGO -->
+        <h2 id="codigo">4. Catálogo de Consultas e Integração (Zero Supressão)</h2>
+        <p>Esta seção expõe o código real trafegado entre as camadas do sistema.</p>
+
+        <h3>4.1 Payload JSON (Integração Frontend -> Webhook)</h3>
+        <p>Estrutura completa do objeto JSON gerado pelo JavaScript do navegador ao submeter o formulário.</p>
+        <span class="code-label">application/json</span>
+        <pre>{
+  "dadosPessoais": {
+    "nomeCompleto": "JOAO DA SILVA RECIFE",
+    "cpf": "123.456.789-00",
+    "dataNascimento": "1985-05-20",
+    "matricula": "998877-1",
+    "cargo": "ANALISTA DE GESTAO ADMINISTRATIVA",
+    "vinculo": "EFETIVO",
+    "dataAdmissao": "2010-02-01",
+    "email": "joao.recife@recife.pe.gov.br",
+    "telefone": "(81) 99999-8888",
+    "pcd": false,
+    "genero": "masculino",
+    "racaCor": "parda",
+    "nacionalidade": "brasileira",
+    "lotacao": "EMPREL",
+    "faixaRemuneracao": "9000_12999"
+  },
+  "outroCargo": {
+    "possui": true,
+    "matricula": "112233-X",
+    "lotacao": "SECRETARIA DE EDUCACAO DO ESTADO"
+  },
+  "requisitos": {
+    "servidorEfetivo": true,
+    "graduacaoCompleta": true,
+    "vinculoAtivo": true,
+    "naoCedido": true,
+    "semAposentadoriaCompulsoria": true,
+    "inicioApplication": true,
+    "compromissoRetorno": true,
+    "semParentesco": true
+  },
+  "universidades": [
+    {
+      "nome": "UNIVERSIDADE DE LISBOA",
+      "pais": "PORTUGAL",
+      "curso": "MESTRADO EM GESTAO PUBLICA"
+    },
+    {
+      "nome": "HARVARD KENNEDY SCHOOL",
+      "pais": "ESTADOS UNIDOS",
+      "curso": "MASTER IN PUBLIC ADMINISTRATION"
+    }
+  ],
+  "documentos": {
+    "curriculo": { "nome": "cv_joao.pdf", "base64": "JVBERi0xLjQK..." },
+    "diploma": { "nome": "diploma_ufpe.pdf", "base64": "JVBERi0xLjQK..." },
+    "cartaMotivacao": { "nome": "carta_motivacao.pdf", "base64": "JVBERi0xLjQK..." },
+    "planoAplicacao": { "nome": "plano_projeto.pdf", "base64": "JVBERi0xLjQK..." }
+  },
+  "metadados": {
+    "aceiteTermos": true,
+    "dataEnvio": "2026-01-31T14:30:00.000Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)..."
+  }
+}</pre>
+
+        <h3>4.2 Consultas SQL (Backend Simulation)</h3>
+        <p>Abaixo apresentamos as Queries SQL ANSI equivalentes que seriam executadas pelo serviço de persistência
+            (Middleware ou Procedure) ao receber o payload acima.</p>
+
+        <span class="code-label">SQL - INSERÇÃO DE DADOS PRINCIPAIS</span>
+        <pre>-- Inserção na Tabela de Candidatura (Header)
+INSERT INTO TB_TP_CANDIDATURA (
+    ID_CANDIDATURA, NU_MATRICULA, NM_COMPLETO, NR_CPF, DT_NASCIMENTO, 
+    NM_CARGO, NM_LOTACAO, DT_ADMISSAO, TX_EMAIL, NR_TELEFONE, 
+    TP_GENERO, RP_RACA_COR, FL_PCD, NM_NACIONALIDADE, VL_FAIXA_REMUNERACAO, 
+    FL_OUTRO_CARGO, DT_INSCRICAO, ST_STATUS
+) VALUES (
+    'f47ac10b-58cc-4372-a567-0e02b2c3d479', 
+    '998877-1', 
+    'JOAO DA SILVA RECIFE', 
+    '12345678900', 
+    '1985-05-20', 
+    'ANALISTA DE GESTAO ADMINISTRATIVA', 
+    'EMPREL', 
+    '2010-02-01', 
+    'joao.recife@recife.pe.gov.br', 
+    '81999998888', 
+    'MASCULINO', 
+    'PARDA', 
+    FALSE, 
+    'BRASILEIRA', 
+    '9000_12999', 
+    TRUE, 
+    CURRENT_TIMESTAMP, 
+    'RECEBIDO'
+);</pre>
+
+        <span class="code-label">SQL - INSERÇÃO RELACIONADA (VÍNCULO EXTRA)</span>
+        <pre>-- Inserção de Segundo Vínculo (Condicional)
+INSERT INTO TB_TP_VINCULO_SECUNDARIO (ID_CANDIDATURA, NU_MATRICULA_SEC, NM_LOTACAO_SEC)
+SELECT 
+    'f47ac10b-58cc-4372-a567-0e02b2c3d479',
+    '112233-X',
+    'SECRETARIA DE EDUCACAO DO ESTADO'
+WHERE EXISTS (
+    SELECT 1 FROM TB_TP_CANDIDATURA 
+    WHERE ID_CANDIDATURA = 'f47ac10b-58cc-4372-a567-0e02b2c3d479' AND FL_OUTRO_CARGO = TRUE
+);</pre>
+
+        <span class="code-label">SQL - INSERÇÃO DE REQUISITOS (CHECKLIST)</span>
+        <pre>-- Persistência do aceite de requisitos
+INSERT INTO TB_TP_REQUISITOS (
+    ID_CANDIDATURA, FL_SERVIDOR_EFETIVO, FL_GRADUACAO_COMPLETA, 
+    FL_VINCULO_ATIVO, FL_NAO_CEDIDO, FL_SEM_APOSEN_COMP, 
+    FL_INICIO_APP, FL_COMPROMISSO_RETORNO, FL_SEM_PARENTESCO
+) VALUES (
+    'f47ac10b-58cc-4372-a567-0e02b2c3d479',
+    TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE
+);</pre>
+
+        <div class="page-break"></div>
+
+        <!-- 5. FLUXO DE PROCESSAMENTO -->
+        <h2 id="fluxo">5. Fluxo de Processamento</h2>
+        <p>O ciclo de vida da informação transita entre a camada de apresentação (Browser) e a camada de
+            persistência/notificação, orquestrado para garantir a atomicidade da transação.</p>
+
+        <h3>Etapa 1: Inicialização e Carregamento (Load)</h3>
+        <p>Ao carregar a página <code>arealogada.html</code>, o sistema intercepta as variáveis de ambiente (injetadas
+            pelo servidor de aplicação ou gerenciador de contexto) contendo os dados do servidor autenticado. Scripts de
+            correção (<code>fix-payload-structure.js</code>) normalizam a estrutura JSON de entrada para garantir
+            compatibilidade.</p>
+
+        <h3>Etapa 2: Interatividade e Validação (Client-Side)</h3>
+        <p>O usuário interage com o formulário. O JavaScript monitora eventos <code>change</code> e <code>input</code>.
+            Validações síncronas ocorrem em tempo real:
+        <ul>
+            <li>Verificação de obrigatoriedade de campos (HTML5 Constraint Validation).</li>
+            <li>Regras de negócio condicionais (ex: Aparecer campos de "Outro Cargo" somente se selecionado "Sim").</li>
+            <li>Controle de arquivos: Validação de extensão (.pdf) e tamanho máximo.</li>
+            </array>
+            </p>
+
+            <h3>Etapa 3: Construção do Payload e Envio</h3>
+            <p>Ao acionar "Enviar Inscrição":
+            <ol>
+                <li>O sistema coleta todos os valores dos inputs.</li>
+                <li>Codifica os arquivos PDF em Base64 (assíncrono).</li>
+                <li>Monta o objeto JSON consolidado (conforme item 4.1).</li>
+                <li>Dispara requisição <code>POST</code> para o endpoint de Webhook configurado.</li>
+            </ol>
+            </p>
+
+            <h3>Etapa 4: Processamento Assíncrono (Server-Side)</h3>
+            <p>O Webhook recebe o JSON, valida a integridade do token de sessão e inicia a transação no banco de dados.
+                Após persistir as tabelas <code>TB_TP_*</code>, dispara e-mail de confirmação para o servidor com o
+                número do protocolo gerado.</p>
+
+            <div class="page-break"></div>
+
+            <!-- 6. TERMO DE ACEITE -->
+            <h2 id="aceite">6. Termo de Aceite e Entrega</h2>
+            <p>Atestamos que a documentação técnica aqui apresentada reflete fielmente a implementação do sistema até a
+                presente data, cobrindo todos os requisitos funcionais e não-funcionais estabelecidos no escopo do
+                projeto.</p>
+
+            <div class="signature-section">
+                <div class="signature-box">
+                    <p><strong>SAD - Secretaria de Administração</strong><br>Aprovação</p>
+                    <br>
+                    __________________________________________<br>
+                    Data: ____/____/2026
+                </div>
+                <div class="signature-box">
+                    <p><strong>Gerente do Projeto(EMPREL)</strong><br>Documentação e execução do projeto</p>
+                    <br>
+                    __________________________________________<br>
+                    Data: 31/01/2026
+                </div>
+            </div>
+
+    </div>
+
+</body>
+
+</html>

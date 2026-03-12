@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" style="margin: 0; padding: 0;">
 
 <head>
     <meta charset="utf-8" />
@@ -9,7 +9,8 @@
         href="https://statics.recife.pe.gov.br/images/dynamics/conecta/icons/favicon.png?w=32&h=32&fit=fill&border=2,transparent,shrink" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Public+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
@@ -28,6 +29,9 @@
             font-family: "Public Sans", sans-serif;
             color: var(--text-strong);
             overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc;
         }
 
         /* Navbar */
@@ -63,23 +67,59 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--brand-secondary) 0%, var(--brand-primary) 100%);
+            background: url('https://statics.recife.pe.gov.br/images/automacao/talentos-recife/talentos-hero-web.svg') top center / 100% 100% no-repeat;
             color: white;
-            padding: 8rem 0 6rem;
             position: relative;
-            overflow: hidden;
+            aspect-ratio: 1920 / 400;
+            width: 100%;
+            margin-bottom: -1px;
+            /* Prevent sub-pixel rendering gaps */
         }
 
-        .hero::before {
-            content: '';
+        .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://statics.recife.pe.gov.br/images/dynamics/conecta/backgrounds/bg-login.jpg') center/cover;
-            opacity: 0.1;
-            mix-blend-mode: overlay;
+            width: 28%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .hero-overlay>* {
+            pointer-events: auto;
+        }
+
+        .hero-program-title {
+            font-family: "Montserrat", sans-serif;
+            color: #ffffff;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+            padding-left: 5%;
+        }
+
+        .hero-program-title .line-programa {
+            font-weight: 500;
+            font-size: clamp(1.0rem, 2.8vw, 2.8rem);
+        }
+
+        .hero-program-title .line-talentos {
+            font-weight: 700;
+            font-size: clamp(1.6rem, 4.2vw, 4.2rem);
+        }
+
+        .hero-program-title .line-publicos {
+            font-weight: 600;
+            font-size: clamp(1.3rem, 3.5vw, 3.5rem);
+        }
+
+        .hero-program-title .line-recife {
+            font-weight: 800;
+            font-size: clamp(0.9rem, 2.3vw, 2.3rem);
         }
 
         .hero-title {
@@ -219,44 +259,384 @@
             margin-bottom: 1rem;
             display: block;
         }
+
+        .btn-hero-cta {
+            background-color: #e0e0e0;
+            color: #1b263b;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border: none;
+        }
+
+        .btn-hero-cta:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Sobre o Programa */
+        /* Sobre o Programa */
+        .section-sobre {
+            background: #f7f9fc;
+            position: relative;
+        }
+
+        .sobre-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 3rem;
+            box-shadow: 0 8px 40px rgba(0, 83, 164, 0.06);
+            border: 1px solid rgba(0, 83, 164, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sobre-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-primary), var(--brand-highlight));
+        }
+
+        .sobre-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 83, 164, 0.06);
+            color: var(--brand-primary);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .sobre-heading {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 2rem;
+            color: var(--brand-secondary);
+        }
+
+        .sobre-heading span {
+            color: inherit;
+        }
+
+        .sobre-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        .sobre-highlight-card {
+            background: #f8f9fa;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .sobre-highlight-card:hover {
+            background: white;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .sobre-highlight-card .icon-wrapper {
+            width: 56px;
+            height: 56px;
+            background: rgba(0, 163, 255, 0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--brand-primary);
+        }
+
+        .sobre-highlight-card h5 {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--brand-secondary);
+        }
+
+        .sobre-highlight-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Público-Alvo */
+        .section-publico {
+            background: #f7f9fc;
+            position: relative;
+        }
+
+        .publico-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 3rem;
+            box-shadow: 0 8px 40px rgba(0, 83, 164, 0.06);
+            border: 1px solid rgba(0, 83, 164, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .publico-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-primary), var(--brand-highlight));
+        }
+
+        .publico-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 83, 164, 0.06);
+            color: var(--brand-primary);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .publico-heading {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--brand-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        .publico-intro {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .requisito-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0f2f5;
+            align-items: flex-start;
+        }
+
+        .requisito-item:last-child {
+            border-bottom: none;
+        }
+
+        .requisito-icon {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 163, 255, 0.1);
+            border-radius: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-primary);
+            font-size: 1rem;
+        }
+
+        .requisito-text {
+            font-size: 0.95rem;
+            color: var(--text-strong);
+            line-height: 1.6;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="bi bi-mortarboard-fill me-2 text-primary"></i>Talentos Públicos
-            </a>
-            <button class="btn btn-login ms-auto"
-                onclick="window.location.href='https://webhook-n8n-dev-conectarecife.recife.pe.gov.br/webhook/gestao-carreiras'">
-                <i class="bi bi-person-circle me-2"></i>Acessar Portal
-            </button>
-        </div>
-    </nav>
-
     <!-- Hero -->
-    <section class="hero">
+    <section class="hero d-flex align-items-center">
+        <!-- Text overlays -->
+        <div class="hero-overlay">
+            <div class="hero-program-title">
+                <span class="line-programa">PROGRAMA</span>
+                <span class="line-talentos">TALENTOS</span>
+                <span class="line-publicos">PÚBLICOS</span>
+                <span class="line-recife">#RECIFE</span>
+            </div>
+        </div>
         <div class="container position-relative z-1">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-12 text-center">
-                    <h1 class="hero-title mb-5 text-nowrap">Programa Talentos Públicos Recife - Trajetórias</h1>
-                    <button class="btn btn-light btn-lg rounded-pill px-5 fw-bold text-primary shadow-lg"
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2 text-start ps-md-5">
+                    <button class="btn btn-hero-cta rounded-pill px-5 shadow-sm"
+                        style="font-size: 1.5rem; padding-top: 1rem; padding-bottom: 1rem; margin-top: -3rem;"
                         onclick="window.location.href='https://webhook-n8n-dev-conectarecife.recife.pe.gov.br/webhook/gestao-carreiras'">
-                        Inscreva-se Agora
+                        INSCREVA-SE AQUI
                     </button>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Sobre o Programa -->
+    <section class="section-sobre pb-5 pt-0" style="margin-top: -1px;">
+        <div class="container">
+            <div class="sobre-card">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-7">
+                        <div class="sobre-badge">
+                            <i class="bi bi-mortarboard-fill"></i> Programa de Bolsas
+                        </div>
+                        <h2 class="sobre-heading">Sobre o <span>Programa</span></h2>
+                        <p class="sobre-text">
+                            Em parceria com o Instituto Trajetórias, a Prefeitura do Recife lança o <strong>Programa
+                                Talentos Públicos Recife</strong> que tem como objetivo apoiar a formação internacional
+                            de
+                            alto nível de servidores públicos municipais, por meio da concessão de bolsas para cursos
+                            presenciais de pós-graduação <em>stricto sensu</em> (mestrado pleno), realizados em
+                            <strong>Universidades de Excelência</strong> no exterior.
+                        </p>
+                        <p class="sobre-text">
+                            Para fins do programa, são consideradas Universidades de Excelência aquelas instituições ou
+                            cursos classificados entre as <strong>100 melhores do mundo</strong>, na classificação geral
+                            ou
+                            por área específica, conforme as edições de 2026 dos rankings internacionais <strong>QS
+                                World
+                                University Rankings</strong> e <strong>Times Higher Education World University
+                                Rankings</strong>.
+                        </p>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="sobre-highlight-card">
+                                    <div class="icon-wrapper"><i class="bi bi-globe2"></i></div>
+                                    <h5>Formação Internacional</h5>
+                                    <p>Mestrado pleno em universidades de excelência no exterior</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <a href="https://www.timeshighereducation.com/world-university-rankings/latest/world-ranking"
+                                    target="_blank" class="text-decoration-none d-block h-100">
+                                    <div class="sobre-highlight-card h-100">
+                                        <div class="icon-wrapper"><i class="bi bi-trophy"></i></div>
+                                        <h5>Top 100 Mundial</h5>
+                                        <p>Rankings QS e Times Higher Education 2026</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <div class="sobre-highlight-card">
+                                    <div class="icon-wrapper"><i class="bi bi-lightbulb"></i></div>
+                                    <h5>Inovação Pública</h5>
+                                    <p>Capacidade científica, tecnológica e de inovação do município</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="sobre-highlight-card">
+                                    <div class="icon-wrapper"><i class="bi bi-people-fill"></i></div>
+                                    <h5>Lideranças</h5>
+                                    <p>Modernização da gestão pública e aprimoramento institucional</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 pt-4" style="border-top: 1px solid #d1d5db;">
+                    <p class="sobre-text text-center" style="max-width: 900px; margin: 0 auto;">
+                        A iniciativa busca promover a <strong>qualificação avançada</strong> dos quadros da Prefeitura
+                        do
+                        Recife, fortalecendo a capacidade científica, tecnológica e de inovação do município. Ao
+                        investir na
+                        formação de profissionais altamente qualificados, o programa contribui para o desenvolvimento de
+                        <strong>lideranças comprometidas</strong> com a modernização da gestão pública e com o
+                        aprimoramento
+                        institucional da cidade.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Público-Alvo -->
+    <section class="section-publico py-5">
+        <div class="container">
+            <div class="publico-card">
+                <div class="mb-4">
+                    <div class="publico-badge">
+                        <i class="bi bi-person-check-fill"></i> Elegibilidade
+                    </div>
+                    <h2 class="publico-heading">Público-Alvo</h2>
+                    <p class="publico-intro">
+                        Poderão candidatar-se <strong>servidores públicos municipais</strong> com nível superior
+                        completo até a data de publicação deste edital, que atendam aos seguintes requisitos:
+                    </p>
+                </div>
+
+                <div class="requisitos-list">
+                    <div class="requisito-item">
+                        <div class="requisito-icon"><i class="bi bi-mortarboard"></i></div>
+                        <div class="requisito-text">
+                            Tenham iniciado o processo de candidatura (<em>"application"</em>) ou obtido carta
+                            de aceite/admissão em programas de <strong>mestrado pleno presencial</strong> em
+                            universidades internacionais de excelência, nas áreas do conhecimento destacadas
+                            neste edital.
+                        </div>
+                    </div>
+                    <div class="requisito-item">
+                        <div class="requisito-icon"><i class="bi bi-building"></i></div>
+                        <div class="requisito-text">
+                            Possuam <strong>vínculo ativo</strong> com órgão ou entidade da administração
+                            pública direta ou indireta da Prefeitura da Cidade do Recife.
+                        </div>
+                    </div>
+                    <div class="requisito-item">
+                        <div class="requisito-icon"><i class="bi bi-arrow-return-left"></i></div>
+                        <div class="requisito-text">
+                            Mantenham <strong>compromisso de retorno</strong> e aplicação do conhecimento
+                            adquirido, de forma a contribuir para a melhoria da gestão pública e o
+                            fortalecimento institucional no município de Recife.
+                        </div>
+                    </div>
+                    <div class="requisito-item">
+                        <div class="requisito-icon"><i class="bi bi-calendar-check"></i></div>
+                        <div class="requisito-text">
+                            Não possuam os requisitos para <strong>aposentadoria compulsória</strong> antes do
+                            término do período em que deve permanecer no órgão após o curso.
+                        </div>
+                    </div>
+                    <div class="requisito-item">
+                        <div class="requisito-icon"><i class="bi bi-shield-check"></i></div>
+                        <div class="requisito-text">
+                            <strong>Não estejam em estágio probatório.</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
     <!-- Eixos Estratégicos -->
     <section class="py-5 bg-light">
-        <div class="container py-5">
-            <div class="section-title">
-                <h2>Eixos Estratégicos</h2>
+        <div class="container">
+            <div class="text-start mb-5">
+                <div class="sobre-badge">
+                    <i class="bi bi-layers-fill"></i> Áreas Prioritárias
+                </div>
+                <h2 style="color: var(--brand-secondary); font-size: 2.5rem; font-weight: 700;">Eixos Estratégicos</h2>
                 <p>Conheça as áreas prioritárias para o desenvolvimento de projetos e aplicação do conhecimento.</p>
             </div>
 
@@ -416,12 +796,7 @@
     <footer>
         <div class="container text-center">
             <span class="footer-brand">Talentos Públicos Recife</span>
-            <p class="mb-4 opacity-75">Secretaria de Administração e Gestão de Pessoas</p>
-            <div class="d-flex justify-content-center gap-3 mb-4">
-                <a href="#" class="text-white opacity-75 hover-opacity-100"><i class="bi bi-instagram fs-4"></i></a>
-                <a href="#" class="text-white opacity-75 hover-opacity-100"><i class="bi bi-linkedin fs-4"></i></a>
-                <a href="#" class="text-white opacity-75 hover-opacity-100"><i class="bi bi-globe fs-4"></i></a>
-            </div>
+            <p class="mb-4 opacity-75">Secretaria de Administração</p>
             <hr class="border-white opacity-25">
             <small class="opacity-50">&copy; 2026 Prefeitura do Recife. Todos os direitos reservados.</small>
         </div>
