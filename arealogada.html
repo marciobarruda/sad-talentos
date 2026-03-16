@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -200,6 +200,47 @@
         input[name^="uni_country_"],
         input[name^="uni_course_"] {
             text-transform: uppercase;
+        }
+
+        /* Floating Button Styles */
+        .university-actions {
+            position: sticky;
+            bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+            pointer-events: none;
+            margin-top: 1.5rem;
+        }
+
+        .btn-floating {
+            pointer-events: auto;
+            border-radius: 50px;
+            padding: 0.75rem 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 83, 164, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            background-color: var(--brand-primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-floating:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 83, 164, 0.4);
+            background-color: var(--brand-secondary);
+            color: white;
+        }
+
+        .btn-floating:active {
+            transform: translateY(0);
+        }
+
+        .btn-floating i {
+            font-size: 1.25rem;
         }
     </style>
 </head>
@@ -764,22 +805,23 @@
                     </div>
                 </div>
 
-                <!-- Dados Acadêmicos -->
-                <div class="form-wrapper">
+                <div class="form-wrapper position-relative">
                     <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
                         <div>
                             <h4 class="text-secondary m-0">5. Dados Acadêmicos e de Pesquisa</h4>
                             <p class="mb-0 mt-1 small text-muted">O servidor poderá escolher mais de uma universidade
                                 (verifique item 1.4 do Edital).</p>
                         </div>
-                        <button type="button" class="btn btn-outline-primary btn-sm" id="btnAddUni"
-                            onclick="addUniversity()">
-                            <i class="bi bi-plus-circle"></i> Adicionar Universidade
-                        </button>
                     </div>
 
                     <div id="universitiesContainer">
                         <!-- Dynamic Content -->
+                    </div>
+
+                    <div class="university-actions">
+                        <button type="button" class="btn btn-floating" id="btnAddUni" onclick="addUniversity()">
+                            <i class="bi bi-plus-circle"></i> Adicionar Universidade
+                        </button>
                     </div>
 
                     <div id="maxUniAlert" class="alert alert-warning mt-3 d-none">
