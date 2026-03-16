@@ -1,7 +1,7 @@
 # Script para sincronização diária do projeto com o GitHub
 # Este script é executado automaticamente via Agendador de Tarefas do Windows
 
-$RepoPath = "g:\Outros computadores\Meu laptop (Emprel)\Desktop\Automação\GitHub\sad-talentos"
+$RepoPath = $PSScriptRoot
 Set-Location $RepoPath
 
 Write-Host "--- Iniciando Sincronização Diária ($(Get-Date -Format 'dd/MM/yyyy HH:mm:ss')) ---"
